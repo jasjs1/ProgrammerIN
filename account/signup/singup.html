@@ -26,6 +26,9 @@
             <p>Email:</p>
             <input type="email" name="email" placeholder="email address">
     
+            <p>Password:</p>
+            <input type="password" name="password" placeholder="enter password">
+    
             <p>Username:</p>
             <input type="text" name="username" placeholder="username">
     
@@ -40,29 +43,27 @@
     </div>
     
     <script>
-const form = document.querySelector('#signup-form');
-
-form.addEventListener('submit', function(event) {
-    event.preventDefault(); // prevent the form from submitting normally
-
-    const formData = new FormData(form); // get the form data
-    const formObject = {}; // create an empty object to store the form data
-    formData.forEach(function(value, key) { // loop through the form data and add it to the object
-        formObject[key] = value;
+    const form = document.querySelector('#signup-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent the form from submitting normally
+    
+        const formData = new FormData(form); // get the form data
+        const formObject = {}; // create an empty object to store the form data
+        formData.forEach(function(value, key) { // loop through the form data and add it to the object
+            formObject[key] = value;
+        });
+        formObject.location = document.querySelector('input[name="location"]').value; // add the location to the form data object
+        formObject.password = document.querySelector('input[name="password"]').value; // add the password to the form data object
+    
+        localStorage.setItem('signupData', JSON.stringify(formObject)); // store the form data in local storage
+    
+        console.log(formObject);
+        console.log('Form data saved to local storage:', formObject);
+        window.location.href = 'http://127.0.0.1:5500/.app/app.html';
     });
-    formObject.location = document.querySelector('input[name="location"]').value; // add the location to the form data object
-
-    localStorage.setItem('signupData', JSON.stringify(formObject)); // store the form data in local storage
-
-    console.log(formObject);
-    console.log('Form data saved to local storage:', formObject);
-    window.location.href = 'http://127.0.0.1:5500/app/app.html';
-});
-
-
-
-
     </script>
+    
     
     
 </body>
