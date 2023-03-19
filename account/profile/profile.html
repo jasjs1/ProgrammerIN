@@ -153,6 +153,20 @@
     <!-- Existing job experiences will be added here dynamically -->
   </ul>
 
+  <div>
+	<label for="description">Description:</label>
+	<p id="description-text"></p>
+	<button id="create-description-btn">Create Description</button>
+  </div>
+  
+  <div id="description-modal" style="display: none">
+	<label for="new-description">Enter your new description:</label>
+	<input type="text" id="new-description">
+	<button id="save-description-btn">Save Description</button>
+	<button id="cancel-description-btn">Cancel</button>
+  </div>
+  
+
   <script src="script.js"></script>
 </body>
 </html>
