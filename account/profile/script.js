@@ -1,3 +1,14 @@
+// Get the user's info from local storage
+const name = localStorage.getItem('name');
+const email = localStorage.getItem('email');
+const username = localStorage.getItem('username');
+
+// Update the HTML with the user's info
+document.getElementById('name').textContent = name;
+document.getElementById('email').textContent = email;
+document.getElementById('username').textContent = username;
+
+
 // Retrieve the existing job experiences from local storage, if any
 let jobExperiences = JSON.parse(localStorage.getItem('jobExperiences')) || [];
 
