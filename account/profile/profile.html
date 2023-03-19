@@ -47,7 +47,23 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Profile View</h1>
+<h1>Profile View: <span id="username"></span></h1>
+<script>
+	// Retrieve the name from local storage
+	const name = localStorage.getItem('name');
+	
+	// Create a new heading element and set its text content
+	const heading = document.createElement('h1');
+	heading.textContent = name + "'s ProgrammerIN Profile";
+	
+	// Remove the existing heading element from the document
+	const existingHeading = document.querySelector('h1');
+	existingHeading.parentNode.removeChild(existingHeading);
+	
+	// Insert the new heading element at the top of the document body
+	document.body.insertBefore(heading, document.body.firstChild);
+  </script>
+  
 
 		<div class="basic-info">
 			<p>Name: <span id="name"></span></p>
