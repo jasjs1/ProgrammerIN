@@ -4,6 +4,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.container {
+    padding-left: 4.5px;
+    text-align: left;
+}
+
 .header {
     padding-top: 30.5px;
     padding-left: 5px;
