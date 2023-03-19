@@ -78,3 +78,49 @@ form.addEventListener('submit', event => {
 
 // Update the experiences list when the page loads
 updateExperiencesList();
+
+const descriptionText = document.getElementById("description-text");
+const createDescriptionBtn = document.getElementById("create-description-btn");
+const descriptionModal = document.getElementById("description-modal");
+const saveDescriptionBtn = document.getElementById("save-description-btn");
+const cancelDescriptionBtn = document.getElementById("cancel-description-btn");
+const maxChars = 150;
+
+// Load description from local storage
+const description = localStorage.getItem("description");
+if (description) {
+  descriptionText.textContent = description;
+}
+
+// Open description modal
+createDescriptionBtn.addEventListener("click", () => {
+  descriptionModal.style.display = "block";
+  document.getElementById("new-description").value = description || "";
+});
+
+
+saveDescriptionBtn.addEventListener("click", () => {
+    const newDescription = document.getElementById("new-description").value;
+    const charCount = newDescription.length;
+    
+    if (charCount > 150) {
+      alert(`Description exceeds maximum length by ${charCount - 150} characters. The description character length needs to be 150 characters`);
+    } else {
+      localStorage.setItem("description", newDescription);
+      descriptionText.textContent = newDescription;
+      descriptionModal.style.display = "none";
+    }
+  });
+  
+  
+
+// Close description modal
+cancelDescriptionBtn.addEventListener("click", () => {
+  descriptionModal.style.display = "none";
+});
+
+// Edit description
+descriptionText.addEventListener("click", () => {
+  descriptionModal.style.display = "block";
+  document.getElementById("new-description").value = descriptionText.textContent || "";
+});
