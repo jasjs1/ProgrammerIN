@@ -47,7 +47,7 @@
 </head>
 <body>
 	<div class="container">
-<h1>Profile View: <span id="username"></span></h1>
+		<h1>Profile View: <span id="username"></span></h1>
 <script>
 	// Retrieve the name from local storage
 	const name = localStorage.getItem('name');
@@ -63,13 +63,14 @@
 	// Insert the new heading element at the top of the document body
 	document.body.insertBefore(heading, document.body.firstChild);
   </script>
+	</div>
   
 
 		<div class="basic-info">
+			<h3><strong>Basic Information:</strong></h3>
 			<p>Name: <span id="name"></span></p>
 			<p>Email: <span id="email"></span></p>
-			<p>Username: <span id="username"></span></p>
-		</div>
+			<p>Username: <span id="username">@username</span></p>
 		  </div>
 
 		  
@@ -81,22 +82,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- <tr>
-					<td>Name</td>
-					<td id="name"></td>
-				</tr>
-				<p>
-					<td>Email</td>
-					<td id="email"></td>
-				</p>
-				<!-- <tr>
-					<td>Password</td>
-					<td id="password"></td>
-				</tr> -->
-				<!-- <tr>
-					<td>Username</td>
-					<td id="username"></td>
-				</tr> -->
 				<tr> 
 					<td>Location</td>
 					<td id="location"></td>
@@ -129,12 +114,18 @@
 		}
 	</script>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Job Experiences</title>
-</head>
-<body>
+<div class="description-div">
+	<label for="description">Description:</label>
+	<p id="description-text"></p>
+	<button id="create-description-btn">Create Description</button>
+  </div>
+  
+  <div id="description-modal" style="display: none">
+	<label for="new-description">Enter your new description:</label>
+	<input type="text" id="new-description">
+	<button id="save-description-btn">Save Description</button>
+	<button id="cancel-description-btn">Cancel</button>
+  </div>
 	
 	<div class="header">
 		<h2>Past Experiences:</h2>
@@ -154,45 +145,32 @@
 		</script>
 	  </div>
 	  
-
-  <form>
-    <label for="job-role">Job Role:</label>
-    <input type="text" id="job-role" name="job-role" required>
-
-	<lable for="company-employed">Company</lable>
-	<input type="text" id="company-employed" name="company-employed" required>
-
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required>
-
-    <label for="date-joined">Date Joined:</label>
-    <input type="date" id="date-joined" name="date-joined" required>
-
-    <label for="date-left">Date Left:</label>
-    <input type="date" id="date-left" name="date-left" required>
-
-    <button type="submit">Add Experience</button>
-  </form>
-
-  <ul id="experiences-list">
-    <!-- Existing job experiences will be added here dynamically -->
-  </ul>
-
-  <div>
-	<label for="description">Description:</label>
-	<p id="description-text"></p>
-	<button id="create-description-btn">Create Description</button>
-  </div>
-  
-  <div id="description-modal" style="display: none">
-	<label for="new-description">Enter your new description:</label>
-	<input type="text" id="new-description">
-	<button id="save-description-btn">Save Description</button>
-	<button id="cancel-description-btn">Cancel</button>
-  </div>
-  
-
-  <script src="script.js"></script>
+	  <form>
+		<label for="job-role">Job Role:</label>
+		<input type="text" id="job-role" name="job-role" required>
+	  
+		<label for="company-employed">Company:</label>
+		<input type="text" id="company-employed" name="company-employed" required>
+	  
+		<!-- <label for="location">Location:</label>
+		<input type="text" id="location" name="location" required> -->
+	  
+		<label for="date-joined">Date Joined:</label>
+		<input type="date" id="date-joined" name="date-joined" required>
+	  
+		<label for="date-left">Date Left:</label>
+		<input type="date" id="date-left" name="date-left" required>
+	  
+		<button type="submit">Add Experience</button>
+	  </form>
+	  
+	  <ul id="experiences-list">
+		<!-- Existing job experiences will be added here dynamically -->
+	  </ul>
+	  
+	  
+	  <script src="script.js"></script>
+	  
 </body>
 </html>
 
