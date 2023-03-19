@@ -1,6 +1,7 @@
 // Retrieve the existing job experiences from local storage, if any
 let jobExperiences = JSON.parse(localStorage.getItem('jobExperiences')) || [];
 
+
 // Function to add a new job experience to the list and local storage
 function addJobExperience(jobRole, companyEmployed, location, dateJoined, dateLeft) {
   // Create a new job experience object
