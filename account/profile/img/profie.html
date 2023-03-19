@@ -1,79 +1,161 @@
-// Retrieve the existing job experiences from local storage, if any
-let jobExperiences = JSON.parse(localStorage.getItem('jobExperiences')) || [];
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile View</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css"
+	<title>ProgrammerIN - Profile</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 600px;
+			margin: auto;
+			padding: 20px;
+		}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #1c1f23;
+		}
+		input[type="text"] {
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			margin-bottom: 10px;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Profile View</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Name</td>
+					<td id="name"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td id="email"></td>
+				</tr>
+				<!-- <tr>
+					<td>Password</td>
+					<td id="password"></td>
+				</tr> -->
+				<tr>
+					<td>Username</td>
+					<td id="username"></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td id="location"></td>
+				</tr>
+				<tr>
+					<td>Current Role</td>
+					<td id="currentRole"></td>
+				</tr>
+				<tr>
+					<td>Role At</td>
+					<td id="roleAt"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-// Function to add a new job experience to the list and local storage
-function addJobExperience(jobRole, companyEmployed, location, dateJoined, dateLeft) {
-  // Create a new job experience object
-  const newExperience = {
-    jobRole,
-    companyEmployed,
-    location,
-    dateJoined,
-    dateLeft
-  };
+	<script>
+		const tokens = ['name', 'email', 'username', 'location', 'currentRole', 'roleAt'];
+		const values = {};
+		
+		// Check if tokens are in local storage
+		for (let token of tokens) {
+			if (localStorage.getItem(token)) {
+				values[token] = localStorage.getItem(token);
+			} else {
+				values[token] = prompt(`Please enter your ${token}:`);
+				localStorage.setItem(token, values[token]);
+			}
+			document.getElementById(token).textContent = values[token];
+		}
+	</script>
 
-  // Add the new experience to the list
-  jobExperiences.push(newExperience);
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Experiences</title>
+</head>
+<body>
+	
+	<div class="header">
+		<h2>Past Experiences:</h2>
+		<p id="intro-text">Past work places that <span id="name-placeholder"></span> has worked at</p>
+		<script>
+		  // Retrieve the name from local storage, if any
+		  const name = localStorage.getItem('name');
+	  
+		  // Update the intro text with the name, if available
+		  const introText = document.getElementById('intro-text');
+		  const namePlaceholder = document.getElementById('name-placeholder');
+		  if (name) {
+			namePlaceholder.textContent = name;
+		  } else {
+			introText.textContent = "Past work places";
+		  }
+		</script>
+	  </div>
+	  
 
-  // Update the local storage with the new experience
-  localStorage.setItem('jobExperiences', JSON.stringify(jobExperiences));
+  <form>
+    <label for="job-role">Job Role:</label>
+    <input type="text" id="job-role" name="job-role" required>
 
-  // Update the experiences list on the page
-  updateExperiencesList();
-}
+	<lable for="company-employed">Company</lable>
+	<input type="text" id="company-employed" name="company-employed" required>
 
-// Function to update the experiences list on the page
-function updateExperiencesList() {
-  const experiencesList = document.getElementById('experiences-list');
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required>
 
-  // Clear the existing list items
-  experiencesList.innerHTML = '';
+    <label for="date-joined">Date Joined:</label>
+    <input type="date" id="date-joined" name="date-joined" required>
 
-  // Add each job experience as a list item to the experiences list
-  jobExperiences.forEach(experience => {
-    const listItem = document.createElement('li');
+    <label for="date-left">Date Left:</label>
+    <input type="date" id="date-left" name="date-left" required>
 
-    const container = document.createElement('div');
+    <button type="submit">Add Experience</button>
+  </form>
 
-    const jobRole = document.createElement('h3');
-    jobRole.textContent = experience.jobRole;
+  <ul id="experiences-list">
+    <!-- Existing job experiences will be added here dynamically -->
+  </ul>
 
-    const companyEmployed = document.createElement('h3');
-    companyEmployed.textContent = experience.companyEmployed;
+  <script src="script.js"></script>
+</body>
+</html>
 
-    container.appendChild(jobRole);
-    container.appendChild(companyEmployed);
-
-    const location = document.createElement('p');
-    location.textContent = experience.location;
-
-    const dates = document.createElement('p');
-    dates.textContent = `${experience.dateJoined} - ${experience.dateLeft}`;
-
-    listItem.appendChild(container);
-    listItem.appendChild(location);
-    listItem.appendChild(dates);
-
-    experiencesList.appendChild(listItem);
-  });
-}
-
-// Add an event listener to the form for when it is submitted
-const form = document.querySelector('form');
-form.addEventListener('submit', event => {
-  event.preventDefault();
-
-  const jobRole = document.getElementById('job-role').value;
-  const companyEmployed = document.getElementById('company-employed').value;
-  const location = document.getElementById('location').value;
-  const dateJoined = document.getElementById('date-joined').value;
-  const dateLeft = document.getElementById('date-left').value;
-
-  addJobExperience(jobRole, companyEmployed, location, dateJoined, dateLeft);
-
-  // Clear the form fields
-  form.reset();
-});
-
-// Update the experiences list when the page loads
-updateExperiencesList();
+</body>
+</html>
