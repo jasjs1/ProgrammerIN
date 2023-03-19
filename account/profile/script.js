@@ -1,137 +1,90 @@
-// Get the user's info from local storage
-const name = localStorage.getItem('name');
-const email = localStorage.getItem('email');
-const username = localStorage.getItem('username');
+// Retrieve the experiences array from local storage, or create a new one if none exists
+const experiences = JSON.parse(localStorage.getItem('experiences')) || [];
 
-// Update the HTML with the user's info
-document.getElementById('name').textContent = name;
-document.getElementById('email').textContent = email;
-document.getElementById('username').textContent = username;
+// Retrieve the experiences list element
+const experiencesList = document.getElementById('experiences-list');
 
+// Function to render a job experience item
+function renderExperience(experience) {
+  const li = document.createElement('li');
+  li.innerHTML = `
+    <h3>${experience.jobRole} at ${experience.company}</h3>
+    <p>${experience.location}, ${new Date(experience.dateJoined).toLocaleDateString()} - ${new Date(experience.dateLeft).toLocaleDateString()}</p>
+    <p>${experience.description}</p>
+  `;
+  return li;
+}
 
-// Retrieve the existing job experiences from local storage, if any
-let jobExperiences = JSON.parse(localStorage.getItem('jobExperiences')) || [];
+// Function to render all job experience items
+function renderExperiences() {
+  experiencesList.innerHTML = '';
+  for (const experience of experiences) {
+    experiencesList.appendChild(renderExperience(experience));
+  }
+}
 
+// Function to handle form submission
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const jobRoleInput = document.getElementById('job-role');
+  const companyInput = document.getElementById('company-employed');
+  const locationInput = document.getElementById('location');
+  const dateJoinedInput = document.getElementById('date-joined');
+  const dateLeftInput = document.getElementById('date-left');
+  const description = '';
 
-// Function to add a new job experience to the list and local storage
-function addJobExperience(jobRole, companyEmployed, location, dateJoined, dateLeft) {
-  // Create a new job experience object
-  const newExperience = {
-    jobRole,
-    companyEmployed,
-    location,
-    dateJoined,
-    dateLeft
+  const experience = {
+    jobRole: jobRoleInput.value,
+    company: companyInput.value,
+    location: locationInput.value,
+    dateJoined: dateJoinedInput.value,
+    dateLeft: dateLeftInput.value,
+    description: description
   };
 
-  // Add the new experience to the list
-  jobExperiences.push(newExperience);
-
-  // Update the local storage with the new experience
-  localStorage.setItem('jobExperiences', JSON.stringify(jobExperiences));
-
-  // Update the experiences list on the page
-  updateExperiencesList();
+  experiences.push(experience);
+  localStorage.setItem('experiences', JSON.stringify(experiences));
+  jobRoleInput.value = '';
+  companyInput.value = '';
+  locationInput.value = '';
+  dateJoinedInput.value = '';
+  dateLeftInput.value = '';
+  renderExperiences();
 }
 
-// Function to update the experiences list on the page
-function updateExperiencesList() {
-  const experiencesList = document.getElementById('experiences-list');
-
-  // Clear the existing list items
-  experiencesList.innerHTML = '';
-
-  // Add each job experience as a list item to the experiences list
-  jobExperiences.forEach(experience => {
-    const listItem = document.createElement('li');
-
-    const container = document.createElement('div');
-
-    const jobRole = document.createElement('h3');
-    jobRole.textContent = experience.jobRole;
-
-    const companyEmployed = document.createElement('h3');
-    companyEmployed.textContent = experience.companyEmployed;
-
-    container.appendChild(jobRole);
-    container.appendChild(companyEmployed);
-
-    const location = document.createElement('p');
-    location.textContent = experience.location;
-
-    const dates = document.createElement('p');
-    dates.textContent = `${experience.dateJoined} - ${experience.dateLeft}`;
-
-    listItem.appendChild(container);
-    listItem.appendChild(location);
-    listItem.appendChild(dates);
-
-    experiencesList.appendChild(listItem);
-  });
+// Function to handle "Create Description" button click
+function handleCreateDescriptionButtonClick() {
+  const descriptionModal = document.getElementById('description-modal');
+  descriptionModal.style.display = 'block';
 }
 
-// Add an event listener to the form for when it is submitted
+// Function to handle "Save Description" button click
+function handleSaveDescriptionButtonClick() {
+  const newDescriptionInput = document.getElementById('new-description');
+  const descriptionText = document.getElementById('description-text');
+  descriptionText.textContent = newDescriptionInput.value;
+  const descriptionModal = document.getElementById('description-modal');
+  descriptionModal.style.display = 'none';
+}
+
+// Function to handle "Cancel" button click
+function handleCancelDescriptionButtonClick() {
+  const descriptionModal = document.getElementById('description-modal');
+  descriptionModal.style.display = 'none';
+}
+
+// Attach event listeners
 const form = document.querySelector('form');
-form.addEventListener('submit', event => {
-  event.preventDefault();
+form.addEventListener('submit', handleFormSubmit);
 
-  const jobRole = document.getElementById('job-role').value;
-  const companyEmployed = document.getElementById('company-employed').value;
-  const location = document.getElementById('location').value;
-  const dateJoined = document.getElementById('date-joined').value;
-  const dateLeft = document.getElementById('date-left').value;
+const createDescriptionButton = document.getElementById('create-description-btn');
+createDescriptionButton.addEventListener('click', handleCreateDescriptionButtonClick);
 
-  addJobExperience(jobRole, companyEmployed, location, dateJoined, dateLeft);
+const saveDescriptionButton = document.getElementById('save-description-btn');
+saveDescriptionButton.addEventListener('click', handleSaveDescriptionButtonClick);
 
-  // Clear the form fields
-  form.reset();
-});
+const cancelDescriptionButton = document.getElementById('cancel-description-btn');
+cancelDescriptionButton.addEventListener('click', handleCancelDescriptionButtonClick);
 
-// Update the experiences list when the page loads
-updateExperiencesList();
-
-const descriptionText = document.getElementById("description-text");
-const createDescriptionBtn = document.getElementById("create-description-btn");
-const descriptionModal = document.getElementById("description-modal");
-const saveDescriptionBtn = document.getElementById("save-description-btn");
-const cancelDescriptionBtn = document.getElementById("cancel-description-btn");
-const maxChars = 150;
-
-// Load description from local storage
-const description = localStorage.getItem("description");
-if (description) {
-  descriptionText.textContent = description;
-}
-
-// Open description modal
-createDescriptionBtn.addEventListener("click", () => {
-  descriptionModal.style.display = "block";
-  document.getElementById("new-description").value = description || "";
-});
-
-
-saveDescriptionBtn.addEventListener("click", () => {
-    const newDescription = document.getElementById("new-description").value;
-    const charCount = newDescription.length;
-    
-    if (charCount > 150) {
-      alert(`Description exceeds maximum length by ${charCount - 150} characters. The description character length needs to be 150 characters`);
-    } else {
-      localStorage.setItem("description", newDescription);
-      descriptionText.textContent = newDescription;
-      descriptionModal.style.display = "none";
-    }
-  });
-  
-  
-
-// Close description modal
-cancelDescriptionBtn.addEventListener("click", () => {
-  descriptionModal.style.display = "none";
-});
-
-// Edit description
-descriptionText.addEventListener("click", () => {
-  descriptionModal.style.display = "block";
-  document.getElementById("new-description").value = descriptionText.textContent || "";
-});
+// Render initial job experiences
+renderExperiences();
