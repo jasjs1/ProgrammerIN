@@ -9,10 +9,19 @@ body {
     text-align: left;
 }
 
+.basic-info {
+    text-align: left;
+}
+
 .header {
     padding-top: 30.5px;
     padding-left: 5px;
     color: #6466E9;
+}
+
+.description-div {
+    padding-top: 32.5px;
+    padding-bottom: 4.5px;
 }
 
 .skills-header {
