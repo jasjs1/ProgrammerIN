@@ -28,7 +28,7 @@ body {
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: #04AA6D;
+    background-color: #6466E9;
     color: white;
   }
 
@@ -74,3 +74,6 @@ body {
     padding-top: 230px;
   }
   
+.local-jobsheader {
+  padding-top: 15px;
+}
