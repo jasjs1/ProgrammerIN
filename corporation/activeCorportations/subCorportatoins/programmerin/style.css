@@ -1,0 +1,43 @@
+body {
+    background-color: #1c1f23;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.job-card {
+    background-color: #4f52566a;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .job-card:hover {
+    background-color: #4e4f51cb;
+    color: white;
+  }
+  
+  .job-card.active {
+    background-color: #f0f0f0;
+  }
+  
+  .job-card h2 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+  
+  .job-card p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .job-card-details {
+    display: none;
+    margin-top: 20px;
+  }
+  
+  .job-card.active .job-card-details {
+    display: block;
+  }
