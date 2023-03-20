@@ -55,6 +55,8 @@ body {
   background-size: 200% 100%;
   transition: background-position 0.5s ease;
   text-align: center;
+  padding-top: 15px;
+  padding: 20.95px;
 }
 
 /* Change background color of buttons on hover */
