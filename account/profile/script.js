@@ -1,3 +1,54 @@
+
+// Education:
+
+// Get the form elements
+const form = document.querySelector('form');
+const eduPlaceInput = document.getElementById('edu-place');
+const degreeTypeInput = document.getElementById('degree-type');
+
+// Get the button element
+const addEduPlaceBtn = document.getElementById('create-eduplace');
+
+// Add event listener to the "Add Education Place" button
+addEduPlaceBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  // Get the values entered in the form fields
+  const eduPlace = eduPlaceInput.value.trim();
+  const degreeType = degreeTypeInput.value.trim();
+  
+  // Save the values to local storage
+  let eduPlaces = JSON.parse(localStorage.getItem('eduPlaces')) || [];
+  eduPlaces.push({ eduPlace, degreeType });
+  localStorage.setItem('eduPlaces', JSON.stringify(eduPlaces));
+  
+  // Display the saved values below the form fields
+  const savedEduPlaces = document.getElementById('saved-edu-places');
+  savedEduPlaces.innerHTML = '';
+  eduPlaces.forEach(function(eduPlace) {
+    const li = document.createElement('li');
+    li.textContent = `${eduPlace.eduPlace} - ${eduPlace.degreeType}`;
+    savedEduPlaces.appendChild(li);
+  });
+  
+  // Clear the form fields
+  eduPlaceInput.value = '';
+  degreeTypeInput.value = '';
+});
+
+// Retrieve the saved values from local storage and display them below the form fields
+const savedEduPlaces = document.getElementById('saved-edu-places');
+let eduPlaces = JSON.parse(localStorage.getItem('eduPlaces')) || [];
+eduPlaces.forEach(function(eduPlace) {
+  const li = document.createElement('li');
+  li.textContent = `${eduPlace.eduPlace} - ${eduPlace.degreeType}`;
+  savedEduPlaces.appendChild(li);
+});
+
+
+
+// Previous Experiences:
+
 // Retrieve the experiences array from local storage, or create a new one if none exists
 const experiences = JSON.parse(localStorage.getItem('experiences')) || [];
 
