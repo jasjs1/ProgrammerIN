@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- added closing tag for link -->
+    <title>ProgrammerIN - Corporation</title>
+</head>
+<body>
+
+    <div class="header1">
+        <h1>ProgrammerIN Corporation Account</h1>
+    </div>
+    
+    <script>
+        function saveCorporation() {
+            var corporation = { // added opening and closing curly braces
+                "name": document.getElementById("corp_name").value,
+                "email": document.getElementById("hq_email").value,
+                "phone": document.getElementById("hq_phone").value,
+                "employee_count": document.getElementById("emp_count").value,
+                "hiring_status": document.querySelector('input[name="hiring_status"]:checked').value,
+                "comments": document.getElementById("comments").value
+            };
+            localStorage.setItem("CORP_signup", JSON.stringify(corporation));
+            alert("Corporation Signup Information Saved!");
+        }
+    </script> <!-- removed extra </head> tag -->
+    
+    <h1>CORPORATION SIGNUP FORM</h1>
+
+    <form action="#" method="POST">
+
+        <label for="corp_name">Corporation Name:</label>
+        <input type="text" id="corp_name" name="corp_name" required><br>
+
+        <label for="hq_email">Corporation HQ Email:</label>
+        <input type="email" id="hq_email" name="hq_email" required><br>
+
+        <label for="hq_phone">Corporation HQ Phone Number:</label>
+        <input type="tel" id="hq_phone" name="hq_phone" required><br>
+
+        <label for="emp_count">Employee Count:</label>
+        <input type="number" id="emp_count" name="emp_count" required><br>
+
+        <label for="hiring_status">Hiring Status:</label><br>
+        <input type="radio" id="hiring_status_active" name="hiring_status" value="Actively Hiring" required>
+        <label for="hiring_status_active">Actively Hiring</label><br>
+        <input type="radio" id="hiring_status_not" name="hiring_status" value="Not Currently Hiring" required>
+        <label for="hiring_status_not">Not Currently Hiring</label><br>
+        <input type="radio" id="hiring_status_planning" name="hiring_status" value="Planning to Hire in the Future" required>
+        <label for="hiring_status_planning">Planning to Hire in the Future</label><br><br>
+
+        <label for="comments">Additional Comments or Questions:</label><br>
+        <textarea id="comments" name="comments" rows="5" cols="30"></textarea><br><br>
+
+        <input type="button" value="Submit" onclick="saveCorporation()">
+
+    </form>
+</body>
+</html>
