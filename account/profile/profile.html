@@ -5,14 +5,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="style.css"
-	<link rel="shortcut icon" href="favicon-32x32.jpg">
 	<title>ProgrammerIN - Profile</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
-		} 
+		}
 		.container {
 			max-width: 600px;
 			margin: auto;
@@ -73,9 +72,7 @@
 			<p>Email: <span id="email"></span></p>
 			<p>Username: <span id="username">@username</span></p>
 		  </div>
-
-		  
-		<table>
+		  <table>
 			<thead>
 				<tr>
 					<th>Other Information</th>
@@ -115,79 +112,12 @@
 		}
 	</script>
 
-<div class="description-div">
-	<label for="description">Description:</label>
-	<p id="description-text"></p>
-	<button id="create-description-btn">Create Description</button>
-  </div>
-  
-  <div id="description-modal" style="display: none">
-	<label for="new-description">Enter your new description:</label>
-	<input type="text" id="new-description">
-	<button id="save-description-btn">Save Description</button>
-	<button id="cancel-description-btn">Cancel</button>
-  </div>
-
-	<div class="education-header">
-		<h2>Education:</h2>
-	</div>
-    <form>
-		<label for="education-place">Education Place:</label>
-		<input type="text" id="edu-place" name="edu-place" required>
-  
-		<label for="degree-type">Degree Type:</label>
-		<input type="text" id="degree-type" name="degree-type" required>
-  
-		<button id="create-eduplace">Add Education Place</button>
-	  </form>
-  
-	  <ul id="saved-edu-places"></ul>
-  
-	  <script>
-		// Get the form elements
-		const form = document.querySelector('form');
-		const eduPlaceInput = document.getElementById('edu-place');
-		const degreeTypeInput = document.getElementById('degree-type');
-  
-		// Get the button element
-		const addEduPlaceBtn = document.getElementById('create-eduplace');
-  
-		// Add event listener to the "Add Education Place" button
-		addEduPlaceBtn.addEventListener('click', function(e) {
-		  e.preventDefault();
-		  
-		  // Get the values entered in the form fields
-		  const eduPlace = eduPlaceInput.value.trim();
-		  const degreeType = degreeTypeInput.value.trim();
-		  
-		  // Save the values to local storage
-		  let eduPlaces = JSON.parse(localStorage.getItem('eduPlaces')) || [];
-		  eduPlaces.push({ eduPlace, degreeType });
-		  localStorage.setItem('eduPlaces', JSON.stringify(eduPlaces));
-		  
-		  // Display the saved values below the form fields
-		  const savedEduPlaces = document.getElementById('saved-edu-places');
-		  savedEduPlaces.innerHTML = '';
-		  eduPlaces.forEach(function(eduPlace) {
-			const li = document.createElement('li');
-			li.textContent = `${eduPlace.eduPlace} - ${eduPlace.degreeType}`;
-			savedEduPlaces.appendChild(li);
-		  });
-		  
-		  // Clear the form fields
-		  eduPlaceInput.value = '';
-		  degreeTypeInput.value = '';
-		});
-  
-		// Retrieve the saved values from local storage and display them below the form fields
-		const savedEduPlaces = document.getElementById('saved-edu-places');
-		let eduPlaces = JSON.parse(localStorage.getItem('eduPlaces')) || [];
-		eduPlaces.forEach(function(eduPlace) {
-		  const li = document.createElement('li');
-		  li.textContent = `${eduPlace.eduPlace} - ${eduPlace.degreeType}`;
-		  savedEduPlaces.appendChild(li);
-		});
-	  </script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Experiences</title>
+</head>
+<body>
 	
 	<div class="header">
 		<h2>Past Experiences:</h2>
@@ -207,32 +137,45 @@
 		</script>
 	  </div>
 	  
-	  <form>
-		<label for="job-role">Job Role:</label>
-		<input type="text" id="job-role" name="job-role" required>
-	  
-		<label for="company-employed">Company:</label>
-		<input type="text" id="company-employed" name="company-employed" required>
-	  
-		<!-- <label for="location">Location:</label>
-		<input type="text" id="location" name="location" required> -->
-	  
-		<label for="date-joined">Date Joined:</label>
-		<input type="date" id="date-joined" name="date-joined" required>
-	  
-		<label for="date-left">Date Left:</label>
-		<input type="date" id="date-left" name="date-left" required>
-	  
-		<button type="submit">Add Experience</button>
-	  </form>
-	  
-	  <ul id="experiences-list">
-		<!-- Existing job experiences will be added here dynamically -->
-	  </ul>
-	  
-	  
-	  <script src="script.js"></script>
-	  
+
+  <form>
+    <label for="job-role">Job Role:</label>
+    <input type="text" id="job-role" name="job-role" required>
+
+	<lable for="company-employed">Company</lable>
+	<input type="text" id="company-employed" name="company-employed" required>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required>
+
+    <label for="date-joined">Date Joined:</label>
+    <input type="date" id="date-joined" name="date-joined" required>
+
+    <label for="date-left">Date Left:</label>
+    <input type="date" id="date-left" name="date-left" required>
+
+    <button type="submit">Add Experience</button>
+  </form>
+
+  <ul id="experiences-list">
+    <!-- Existing job experiences will be added here dynamically -->
+  </ul>
+
+  <!-- <div>
+	<label for="description">Description:</label>
+	<p id="description-text"></p>
+	<button id="create-description-btn">Create Description</button>
+  </div>
+  
+  <div id="description-modal" style="display: none">
+	<label for="new-description">Enter your new description:</label>
+	<input type="text" id="new-description">
+	<button id="save-description-btn">Save Description</button>
+	<button id="cancel-description-btn">Cancel</button>
+  </div> -->
+  
+
+  <script src="script.js"></script>
 </body>
 </html>
 
