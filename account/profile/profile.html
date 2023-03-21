@@ -173,6 +173,50 @@
 	<button id="save-description-btn">Save Description</button>
 	<button id="cancel-description-btn">Cancel</button>
   </div> -->
+
+
+  <h1>Skills</h1>
+  <form id="skills-form">
+	<label for="new-skill">Add Skill:</label>
+	<input type="text" id="new-skill" name="new-skill">
+	<button type="submit">Add</button>
+  </form>
+  <ul id="skills-list"></ul>
+  <script>
+	const skillsForm = document.querySelector('#skills-form');
+	const skillsList = document.querySelector('#skills-list');
+	let skillsArray = JSON.parse(localStorage.getItem('skills')) || [];
+	
+	// Function to render skills
+	function renderSkills() {
+	  skillsList.innerHTML = '';
+	  for (let i = 0; i < skillsArray.length; i++) {
+		const skillItem = document.createElement('li');
+		skillItem.textContent = skillsArray[i];
+		skillsList.appendChild(skillItem);
+	  }
+	}
+	
+	// Function to handle form submission
+	function handleFormSubmit(event) {
+	  event.preventDefault();
+	  const skillInput = document.querySelector('#new-skill');
+	  const skillValue = skillInput.value.trim();
+	  if (skillValue) {
+		skillsArray.push(skillValue);
+		localStorage.setItem('skills', JSON.stringify(skillsArray));
+		skillInput.value = '';
+		renderSkills();
+	  }
+	}
+	
+	// Attach event listeners
+	skillsForm.addEventListener('submit', handleFormSubmit);
+	
+	// Render initial skills
+	renderSkills();
+  </script>
+  
   
 
   <script src="script.js"></script>
