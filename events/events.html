@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>ProgrammerIN - Events</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1>
+            ProgrammerIN
+        </h1>
+    
+        <h2>
+            Events
+        </h2>
+
+        
+        <p>
+            Create a event so you and your freinds can meet up and do some intreview prep or squash some bugs.
+        </p>
+    </div>
+
+<!-- Form to add new events -->
+<form id="event-form">
+    <h2>Add New Event</h2>
+    <div class="fields">
+        <label for="event-type">Event Type:</label>
+        <input type="text" id="event-type">
+        
+        <label for="event-date">Event Date:</label>
+        <input type="date" id="event-date">
+
+        <label for="event-time">Event Time:</label>
+        <input type="time" id="event-time">
+
+        <label for="event-location">Event Location:</label>
+        <input type="text" id="event-location">
+
+        <label for="whos-invited">Who's Invited:</label>
+        <input type="text" id="whos-invited">
+
+        <label for="description">Description:</label>
+        <textarea id="description"></textarea>
+    </div>
+    <button type="submit">Add Event</button>
+</form>
+
+<!-- Container to display added events -->
+<div id="event-container">
+    <h2>Events</h2>
+    <h2>Open Events</h2>
+</div>
+    
+</body>
+<script src="script.js"></script>
+</html>
