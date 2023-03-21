@@ -1,0 +1,46 @@
+body {
+    background-color: #1c1f23;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.header {
+    color: #6466E9;
+    font-weight: 700px;
+}
+
+.active-notifications {
+    padding-top: 15px;
+    color: #e3c219f6;
+}
+
+#notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px 20px;
+    position: top;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+  
+  #notification .close {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    color: #333;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-left: 20px;
+  }
+  
+  #notification .close:hover {
+    color: #f00;
+  }
