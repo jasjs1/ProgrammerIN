@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"
+  <title>ProgrammerIN - Notifications</title>
+</head>
+<body>
+
+  <body>
+    <div class="header">
+      <h1>Notifications</h1>
+    </div>
+    <div class="active-notifications">
+      <h2>Active Notifications:</h2>
+    </div>
+  
+    <div id="notification">
+      <p>Sample notification message.</p>
+      <button class="close">x</button>
+    </div>
+  
+    <script>
+      const notification = document.querySelector('#notification');
+      const closeButton = notification.querySelector('.close');
+      const notificationClosed = localStorage.getItem('notificationClosed') === 'true';
+  
+      if (!notificationClosed) {
+        notification.style.display = 'flex';
+      }
+  
+      closeButton.addEventListener('click', () => {
+        notification.style.display = 'none';
+        localStorage.setItem('notificationClosed', 'true');
+        console.log('Notification closed');
+      });
+    </script>
+  </body>
+  
+  
+</body>
+</html>
