@@ -6,15 +6,15 @@ closeButton.addEventListener('click', () => {
   console.log('Notification has been hidden');
 });
 
-const notificationMessages = [
-    "Hello there!",
-    "Welcome to our website!",
-    "Thanks for visiting!",
-    "Have a nice day!",
-    "You're awesome!",
-    "Keep up the good work!",
-  ];
+// const notificationMessages = [
+//     "Hello there!",
+//     "Welcome to our website!",
+//     "Thanks for visiting!",
+//     "Have a nice day!",
+//     "You're awesome!",
+//     "Keep up the good work!",
+//   ];
   
-  const randomIndex = Math.floor(Math.random() * notificationMessages.length);
-  const message = notificationMessages[randomIndex];
+//   const randomIndex = Math.floor(Math.random() * notificationMessages.length);
+//   const message = notificationMessages[randomIndex];
   
