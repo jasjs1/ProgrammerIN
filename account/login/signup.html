@@ -41,9 +41,14 @@
             <p>Role at:</p>
             <input type="text" name="roleAt" placeholder="company name">
             <p id="roleAt"></p>
+
+            <p>Hiring Status:</p>
+            <input type="text" name="hiringStatus" placeholder="Yes or No">
+            <p id="hiringStatus"></p>
             
-    
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="window.location.href='http://127.0.0.1:5500/.app/app.html';" value="Submit">Submit</button>
+
+
         </form>
     </div>
 
@@ -61,6 +66,7 @@
           const location = form.elements['location'].value;
           const currentRole = form.elements['role'].value;
           const placeOfEmployment = form.elements['roleAt'].value
+          const hiringStatus = form.elements['hiringStatus'].value
           
           // store form data in localStorage
           localStorage.setItem('name', name);
@@ -70,6 +76,7 @@
           localStorage.setItem('location', location);
           localStorage.setItem('currentRole', currentRole);
           localStorage.setItem('roleAt', placeOfEmployment)
+          localStoragee.setItem('hiringStatus', hiringStatus)
           
           // update text content on the page
           document.querySelector('#name').textContent = name;
@@ -79,6 +86,7 @@
           document.querySelector('#location').textContent = location;
           document.querySelector('#current-role').textContent = currentRole;
           document.querySelector('#roleAt').textContent = placeOfEmployment;
+          document.querySelector('#hiringStatus').textContent = hiringStatus;
         });
       </script>
 </body>
