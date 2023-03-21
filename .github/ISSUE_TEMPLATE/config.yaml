@@ -6,3 +6,6 @@ contact_links:
   - name: Feature Request
     url: https://github.com/jSagvold28/ProgrammerIN/tree/main/.github/ISSUE_TEMPLATE
     about: Create a feature that you would like to see in ProgrammerIN
+  - name: Appeal Change
+    url: https://github.com/jSagvold28/ProgrammerIN/blob/main/.github/ISSUE_TEMPLATE/appealingchange.md
+    about: Appeal a change to a file
