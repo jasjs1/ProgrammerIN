@@ -227,6 +227,9 @@
   
 	  <label for="degree">Degree:</label>
 	  <input type="text" id="degree" name="degree" required>
+
+	  <label for="school-type">School Type</label>
+	  <input type="text" id="school-type" name="school-type"
   
 	  <label for="year">Year Graduated:</label>
 	  <input type="number" id="year" name="year" min="1900" max="2099" required>
@@ -235,6 +238,9 @@
 	</form>
   
 	<h3>Saved Education:</h3>
+	<div class="h">
+		<p>If you need help: https://github.com/jSagvold28/ProgrammerIN/blob/main/documentation/profile-documentaiton.md</p>
+	</div>
 	<ul id="saved-education"></ul>
   </div>
   
@@ -247,11 +253,13 @@
 	
 	  const schoolInput = document.getElementById('school');
 	  const degreeInput = document.getElementById('degree');
+	  const schoolType = document.getElementById('school-type')
 	  const yearInput = document.getElementById('year');
 	
 	  const education = {
 		school: schoolInput.value,
 		degree: degreeInput.value,
+		type: schoolType.value,
 		year: yearInput.value
 	  };
 	
@@ -271,6 +279,7 @@
 	  // clear the form inputs
 	  schoolInput.value = '';
 	  degreeInput.value = '';
+	  schoolType.value = '';
 	  yearInput.value = '';
 	});
 	
