@@ -39,5 +39,16 @@ body {
 }
 
 .edu-header {
+    padding-top: 9.5px;
     color: #6466E9;
+}
+
+.topaccheviements-header {
+    padding-top: 9.5px;
+    color: #6466E9;
+    padding-left: 5.5px;
+}
+
+.feilds {
+    padding-left: 5.5px;
 }
