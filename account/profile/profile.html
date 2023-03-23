@@ -218,6 +218,71 @@
 	// Render initial skills
 	renderSkills();
   </script>
+
+<div class="education">
+	<h2>Education:</h2>
+	<form id="education-form">
+	  <label for="school">School:</label>
+	  <input type="text" id="school" name="school" required>
+  
+	  <label for="degree">Degree:</label>
+	  <input type="text" id="degree" name="degree" required>
+  
+	  <label for="year">Year Graduated:</label>
+	  <input type="number" id="year" name="year" min="1900" max="2099" required>
+  
+	  <button type="submit">Save</button>
+	</form>
+  
+	<h3>Saved Education:</h3>
+	<ul id="saved-education"></ul>
+  </div>
+  
+  <script>
+	const educationForm = document.getElementById('education-form');
+	const savedEducationList = document.getElementById('saved-education');
+	
+	educationForm.addEventListener('submit', function(event) {
+	  event.preventDefault(); // prevent the form from submitting
+	
+	  const schoolInput = document.getElementById('school');
+	  const degreeInput = document.getElementById('degree');
+	  const yearInput = document.getElementById('year');
+	
+	  const education = {
+		school: schoolInput.value,
+		degree: degreeInput.value,
+		year: yearInput.value
+	  };
+	
+	  // save the education to local storage
+	  let savedEducation = JSON.parse(localStorage.getItem('education')) || [];
+	  savedEducation.push(education);
+	  localStorage.setItem('education', JSON.stringify(savedEducation));
+	
+	  // display the saved education in the list
+	  savedEducationList.innerHTML = '';
+	  savedEducation.forEach(function(education) {
+		const listItem = document.createElement('li');
+		listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
+		savedEducationList.appendChild(listItem);
+	  });
+	
+	  // clear the form inputs
+	  schoolInput.value = '';
+	  degreeInput.value = '';
+	  yearInput.value = '';
+	});
+	
+	// load saved education from local storage on page load
+	const savedEducation = JSON.parse(localStorage.getItem('education')) || [];
+	savedEducation.forEach(function(education) {
+	  const listItem = document.createElement('li');
+	  listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
+	  savedEducationList.appendChild(listItem);
+	});
+  </script>
+  
   
   
 
