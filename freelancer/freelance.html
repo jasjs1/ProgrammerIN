@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ProgrammerIN - Freelancer</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ProgrammerIN</h1>
+        <h2>Freelance</h2>
+        <p>Freelancing is a way that you can make money on the side with the skills that you have. Ex: I will write the backend of your mobile app in Java.</p>
+    </div>
+
+    <form id="gig-form">
+        <h2>Add new freelance gig</h2>
+        <div class="fields">
+            <label for="gig-title">Gig Title</label>
+            <input type="text" id="gig-title">
+            
+            <label for="lang-used">Language Used:</label>
+            <input type="text" id="lang-used">
+    <!--  -->
+            <label for="gig-tags">Gig Tags:</label>
+            <input type="text" id="gig-tags">
+    
+            <label for="event-location">Gig Creator:</label>
+            <input type="text" id="gig-creator">
+    
+            <label for="description">Description:</label>
+            <textarea id="description"></textarea>
+        </div>
+        <button type="submit">Add Gig</button>
+    </form>
+    
+    <div class="active-gigs" id="active-gigs"></div>
+
+    <script>
+      const activeGigs = document.querySelector('#active-gigs');
+      const gigs = JSON.parse(localStorage.getItem('gig')) || [];
+    
+      gigs.forEach((gig) => {
+        const gigElement = document.createElement('div');
+        gigElement.classList.add('gig');
+        gigElement.innerHTML = `
+          <h3>${gig.title}</h3>
+          <p><strong>Language used:</strong> ${gig.langUsed}</p>
+          <p><strong>Gig tags:</strong> ${gig.tags}</p>
+          <p><strong>Gig creator:</strong> ${gig.creator}</p>
+          <p><strong>Description:</strong> ${gig.description}</p>
+        `;
+        activeGigs.appendChild(gigElement);
+      });
+    </script>
+    
+    
+</body>
+<script src="script.js"></script>
+</html>
