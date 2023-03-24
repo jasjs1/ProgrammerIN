@@ -5,6 +5,24 @@ body {
     padding-left: 5.5px;
 }
 
+
+ #profile-icon {
+  width: 65px;
+  height: auto;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+#profile-select {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 22.5px;
+}
+
+
+
+
+
 .container {
     padding-left: 4.5px;
     text-align: left;
