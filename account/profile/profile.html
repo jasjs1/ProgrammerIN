@@ -28,7 +28,7 @@
 		}
 		th {
 			background-color: #1c1f23;
-		} 
+		}
 		input[type="text"] {
 			padding: 5px;
 			border: 1px solid #ccc;
@@ -360,6 +360,83 @@
 </script>
 
   
+<div class="intrests-form">
+	<label for="type">Choose Type of Interest</label>
+	<select name="type" id="type">
+		<option value="select"></option>
+		<option value="person">Person</option>
+		<option value="company">Company</option>
+		<option value="topic">Topic</option>
+	</select>
+	<br><br>
+
+	<label for="interest-name">Interest Name:</label>
+	<input type="text" id="interest-name" name="interest-name" required>
+
+	<label for="interest-description">Description</label>
+	<input type="text" id="interest-description" name="interest-description">
+
+	<button type="button" onclick="saveInterest()">Save Interest</button>
+</div>
+
+<div id="interests-list"></div>
+
+<script>
+	function saveInterest() {
+		// Get the input values
+		const type = document.getElementById('type').value;
+		const name = document.getElementById('interest-name').value;
+		const description = document.getElementById('interest-description').value;
+
+		// Create an object to hold the input values
+		const interest = { type, name, description };
+
+		// Get the existing interests from local storage
+		let interests = JSON.parse(localStorage.getItem('interests')) || [];
+
+		// Add the new interest to the array
+		interests.push(interest);
+
+		// Save the updated interests to local storage
+		localStorage.setItem('interests', JSON.stringify(interests));
+
+		// Clear the form fields
+		document.getElementById('type').value = 'select';
+		document.getElementById('interest-name').value = '';
+		document.getElementById('interest-description').value = '';
+
+		// Display the updated interests
+		displayInterests();
+	}
+
+	function displayInterests() {
+		// Get the interests from local storage
+		let interests = JSON.parse(localStorage.getItem('interests')) || [];
+
+		// Get the interests list element
+		const interestsList = document.getElementById('interests-list');
+
+		// Clear the interests list
+		interestsList.innerHTML = '';
+
+		// Create a new list item for each interest
+		interests.forEach((interest) => {
+			const listItem = document.createElement('li');
+			listItem.innerHTML = `
+				<strong>Intrest Type:</strong> ${interest.type}<br>
+				<strong>Intrest:</strong> ${interest.name}<br>
+				<strong>Description:</strong> ${interest.description}<br><br>
+			`;
+			interestsList.appendChild(listItem);
+		});
+	}
+
+	// Display the initial interests on page load
+	displayInterests();
+</script>
+
+
+	
   
 
   <script src="script.js"></script>
