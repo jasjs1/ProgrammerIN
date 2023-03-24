@@ -189,3 +189,30 @@ descriptionText.addEventListener("click", () => {
   descriptionModal.style.display = "block";
   document.getElementById("new-description").value = descriptionText.textContent || "";
 });
+
+
+const profileSelect = document.getElementById("profile-select");
+const profileImage = document.getElementById("profile-image");
+const defaultIcon = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+profileSelect.addEventListener("change", () => {
+    const selectedProfile = profileSelect.value;
+    let iconURL = defaultIcon;
+    if (selectedProfile === "1") {
+        iconURL = "https://cdn-icons-png.flaticon.com/512/428/428933.png";
+    } else if (selectedProfile === "2") {
+        iconURL = "https://cdn-icons-png.flaticon.com/512/3001/3001778.png";
+    } else if (selectedProfile === "3") {
+        iconURL = "https://cdn-icons-png.flaticon.com/512/3135/3135789.png";
+    }
+    localStorage.setItem("profileIcon", iconURL);
+    profileImage.src = iconURL;
+});
+
+window.addEventListener("load", () => {
+    const storedIcon = localStorage.getItem("profileIcon");
+    if (storedIcon) {
+        profileImage.src = storedIcon;
+        profileSelect.value = (storedIcon === defaultIcon) ? "1" : "2";
+    }
+});
