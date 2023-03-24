@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="style.css">
 	<title>ProgrammerIN - Profile</title>
 	<style>
+		/* CSS For table of data */
 		body {
 			font-family: Arial, sans-serif;
 			margin: 0;
@@ -44,6 +45,8 @@
 			cursor: pointer;
 		}
 	</style>
+
+
 </head>
 <body>
 	<div class="container">
@@ -63,6 +66,40 @@
 	// Insert the new heading element at the top of the document body
 	document.body.insertBefore(heading, document.body.firstChild);
   </script>
+	</div>
+
+	<div class="profile-icon">
+		<select id="profile-select" onchange="selectProfile()">
+			<option value="1">Profile Icon 1</option>
+			<option value="2">Profile Icon 2</option>
+			<option value="3">Profile Icon 3</option>
+		  </select>
+		  <img id="profile-icon" src="https://cdn-icons-png.flaticon.com/512/428/428933.png">
+		  
+		  <script>
+			function selectProfile() {
+			  var profileSelect = document.getElementById("profile-select");
+			  var selectedProfile = profileSelect.options[profileSelect.selectedIndex].value;
+			  var profileIcon = document.getElementById("profile-icon");
+			  if (selectedProfile == "1") {
+				profileIcon.src = "https://cdn-icons-png.flaticon.com/512/428/428933.png";
+				localStorage.setItem("profileIcon", profileIcon.src);
+			  } else if (selectedProfile == "2") {
+				profileIcon.src = "https://cdn-icons-png.flaticon.com/512/3135/3135789.png";
+				localStorage.setItem("profileIcon", profileIcon.src);
+			  } else if (selectedProfile == "3") {
+				profileIcon.src = "https://cdn-icons-png.flaticon.com/512/3001/3001778.png";
+				localStorage.setItem("profileIcon", profileIcon.src);
+			  }
+			}
+			window.onload = function() {
+			  var profileIcon = document.getElementById("profile-icon");
+			  var storedIcon = localStorage.getItem("profileIcon");
+			  if (storedIcon) {
+				profileIcon.src = storedIcon;
+			  }
+			}
+		  </script>
 	</div>
   
 
