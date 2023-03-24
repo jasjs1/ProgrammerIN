@@ -1,24 +1,3 @@
----
-name: '🐞 Bug Report'
-about: 'report a bug with an existing effect'
-title: ''
-labels:
-  - bug
-assignees:
-  - runewake2
-
----
-
-### Describe the Issue---
-name: '🐞 Bug Report'
-about: 'report a bug with an existing effect'
-title: ''
-labels:
-  - bug
-assignees:
-  - runewake2
-
----
 
 ### Describe the Issue
 Please describe what is happening
