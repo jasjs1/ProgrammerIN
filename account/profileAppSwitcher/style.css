@@ -1,0 +1,17 @@
+body {
+    background-color: #1c1f23;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.header {
+    color: #6466E9;
+}
+
+.links {
+    background-color: #6466E9;
+    color: white;
+    font-size: 20px;
+    padding: 25px 25px 25px 25px;
+}
