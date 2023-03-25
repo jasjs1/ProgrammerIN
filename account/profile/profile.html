@@ -451,7 +451,159 @@
 </script>
 
 
+<div class="listens-header">
+	<h2>Licenses & Certificates:</h2>
+	<p>Add your expertise in a Listens or Certificates that you have recived or been granted.</p>
+	<select id="select-field">
+	  <option>Select Type</option>
+	  <option value="listens">Listens</option>
+	  <option value="certificates">Certificates</option>
+	</select>
+  </div>
+  
+  <div id="listens-section" style="display: none;">
+	<form>
+	  <label for="listens-name">Listens Name:</label>
+	  <input type="text" id="listens-name" name="listens-name" required>
+  
+	  <label for="date-issued">Date Issued:</label>
+	  <input type="date" id="date-issued" name="date-issued" required>
+  
+	  <label for="credential-id">Credential ID: </label>
+	  <input type="text" id="credential-id" name="credential-id" required min="6" max="55">
+	  
+	  <button type="submit">Submit</button>
+
+	  <script>
+		// Listen to the submit event of the form in the listens-section
+		document.querySelector("#listens-section form").addEventListener("submit", function(event) {
+		  event.preventDefault(); // prevent the default form submission behavior
+	  
+		  // Get the form data
+		  const listensName = document.querySelector("#listens-name").value;
+		  const dateIssued = document.querySelector("#date-issued").value;
+		  const credentialId = document.querySelector("#credential-id").value;
+	  
+		  // Create an object to store the form data
+		  const listensData = {
+			"listensName": listensName,
+			"dateIssued": dateIssued,
+			"credentialId": credentialId
+		  };
+	  
+		  // Retrieve the existing listens data from local storage or create a new array if it doesn't exist
+		  let listensArray = JSON.parse(localStorage.getItem("listens")) || [];
+	  
+		  // Add the new data to the listens array
+		  listensArray.push(listensData);
+	  
+		  // Save the updated listens array to local storage
+		  localStorage.setItem("listens", JSON.stringify(listensArray));
+	  
+		  // Reset the form
+		  document.querySelector("#listens-section form").reset();
+	  
+		});
+	  </script>
+
+
+	</form>
+  </div>
+  
+  <div id="certificates-section" style="display: none;">
+
+	<label for="certificate-name">Certificate Name:</label>
+	<input type="text" id="certificate-name" name="certificate-name" required>
+
+	<label for="date-issued">Date Issued:</label>
+	<input type="date" id="date-issued" name="date-issued" required>
+
+	<label for="date-expires">Date Expires:</label>
+	<input type="date" id="date-expires" name="date-expires" required>
+
+	<button onclick="saveCertificates()">Submit</button>
+
+</div>
+
+<script>
+	// Listen to the change event of the select field
+	document.getElementById("select-field").addEventListener("change", function() {
+	  var selectedOption = this.value;
 	
+	  // Hide all sections first
+	  document.getElementById("listens-section").style.display = "none";
+	  document.getElementById("certificates-section").style.display = "none";
+	
+	  // Show the selected section
+	  if (selectedOption === "listens") {
+		document.getElementById("listens-section").style.display = "block";
+	  } else if (selectedOption === "certificates") {
+		document.getElementById("certificates-section").style.display = "block";
+	  }
+	
+	  // Add submit event listener to the form
+	  var form = document.querySelector("form");
+	  form.addEventListener("submit", function(event) {
+		event.preventDefault();
+	
+		// Get the values from the form inputs
+		var certificateName = document.getElementById("certificate-name").value;
+		var dateIssued = document.getElementById("date-issued").value;
+		var dateExpires = document.getElementById("date-expires").value;
+	
+		// Create an object to hold the certificate data
+		var certificate = {
+		  certificateName: certificateName,
+		  dateIssued: dateIssued,
+		  dateExpires: dateExpires
+		};
+	
+		// Add the certificate data to local storage
+		var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+		certificates.push(certificate);
+		localStorage.setItem("certificates", JSON.stringify(certificates));
+	
+		// Reset the form inputs
+		form.reset();
+	
+		// Show a success message to the user
+		alert("Certificate added successfully!");
+	
+		// Get the certificates from local storage and display them
+		var certificatesList = document.getElementById("certificates-list");
+		certificatesList.innerHTML = "";
+		var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+		certificates.forEach(function(certificate) {
+		  var certificateItem = document.createElement("li");
+		  certificateItem.textContent = certificate.certificateName + " (issued: " + certificate.dateIssued + ", expires: " + certificate.dateExpires + ")";
+		  certificatesList.appendChild(certificateItem);
+		});
+	  });
+	
+	  // Get the certificates from local storage and display them
+	  var certificatesList = document.getElementById("certificates-list");
+	  certificatesList.innerHTML = "";
+	  var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+	  certificates.forEach(function(certificate) {
+		var certificateItem = document.createElement("li");
+		certificateItem.textContent = certificate.certificateName + " (issued: " + certificate.dateIssued + ", expires: " + certificate.dateExpires + ")";
+		certificatesList.appendChild(certificateItem);
+	  });
+	});
+	
+	// Get the certificates from local storage and display them on page load
+	window.addEventListener('load', function () {
+	  var certificatesList = document.getElementById("certificates-list");
+	  certificatesList.innerHTML = "";
+	  var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+	  certificates.forEach(function(certificate) {
+		var certificateItem = document.createElement("li");
+		certificateItem.textContent = certificate.certificateName + " (issued: " + certificate.dateIssued + ", expires: " + certificate.dateExpires + ")";
+		certificatesList.appendChild(certificateItem);
+	  });
+	});
+	
+	</script>
   
 
   <script src="script.js"></script>
