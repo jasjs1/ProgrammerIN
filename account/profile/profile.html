@@ -76,10 +76,6 @@
 		</select>
 		<img id="profile-image" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
 	</div>
-	
-	  
-	  
-  
 
 		<div class="basic-info">
 			<h3><strong>Basic Information:</strong></h3>
@@ -108,12 +104,16 @@
 					<td>Role At</td>
 					<td id="roleAt"></td>
 				</tr>
+				<tr>
+					<td>Working Location Status</td>
+					<td id="workLocation"></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 
 	<script>
-		const tokens = ['name', 'email', 'username', 'location', 'currentRole', 'roleAt', 'hiringStatus'];
+		const tokens = ['name', 'email', 'username', 'location', 'currentRole', 'roleAt', 'hiringStatus', 'workLocation'];
 		const values = {};
 		
 		// Check if tokens are in local storage
