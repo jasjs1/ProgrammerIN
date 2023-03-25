@@ -1,26 +1,29 @@
 body {
     background-color: #1c1f23;
     color: white;
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     padding-left: 5.5px;
 }
 
 
- #profile-icon {
-  width: 65px;
-  height: auto;
-  display: inline-block;
-  margin-right: 20px;
-}
-
-#profile-select {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 22.5px;
-}
-
-
-
+.profile-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #profile-select {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 150px;
+  }
+  
+  #profile-image {
+    width: 60px;
+    height: auto;
+  }
 
 
 .container {
@@ -80,5 +83,9 @@ body {
 }
 
 .intrests-header {
+    color: #6466E9;
+}
+
+.listens-header {
     color: #6466E9;
 }
