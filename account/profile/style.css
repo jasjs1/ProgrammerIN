@@ -5,6 +5,11 @@ body {
     padding-left: 5.5px;
 }
 
+.follower-class {
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
 
 .profile-icon {
     display: flex;
