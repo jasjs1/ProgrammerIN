@@ -87,35 +87,34 @@
 		
 		
 		<script>
-// Get the follow button and follower count elements
-const followButton = document.getElementById('follow-button');
-const followerCountElement = document.getElementById('follower-count');
+			const followButton = document.getElementById('follow-button');
+		const followerCountElement = document.getElementById('follower-count');
 
-// Check if there's a stored follower count in local storage
-let followerCount = localStorage.getItem('followerCount');
-if (!followerCount) {
-  // If there's no follower count in local storage, set it to 0
-  followerCount = 0;
-}
+		// Check if there's a stored follower count in local storage
+		let followerCount = localStorage.getItem('followerCount');
+		if (!followerCount) {
+		// If there's no follower count in local storage, set it to 0
+		followerCount = 0;
+		}
 
-// Update the follower count element with the current follower count
-followerCountElement.textContent = followerCount;
+		// Update the follower count element with the current follower count
+		followerCountElement.textContent = followerCount;
 
-// Update the button text with the current follower count
-followButton.textContent = `Follow`;
+		// Update the button text with the current follower count
+		followButton.textContent = `Follow`;
 
-// Add a click event listener to the button
-followButton.addEventListener('click', () => {
-  // Add 1 to the follower count
-  followerCount++;
-  
-  // Save the updated follower count to local storage
-  localStorage.setItem('followerCount', followerCount);
-  
-  // Update the follower count element and button text with the new follower count
-  followerCountElement.textContent = followerCount;
-  followButton.textContent = `Follow (${followerCount})`;
-});
+		// Add a click event listener to the button
+		followButton.addEventListener('click', () => {
+		// Add 1 to the follower count
+		followerCount++;
+		
+		// Save the updated follower count to local storage
+		localStorage.setItem('followerCount', followerCount);
+		
+		// Update the follower count element and button text with the new follower count
+		followerCountElement.textContent = followerCount;
+		followButton.textContent = `Follow (${followerCount})`;
+		});
 
 		</script>
 	</div>
