@@ -1,15 +1,23 @@
 body {
     background-color: #1c1f23;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
 
-.welcome-msg {
+.header {
     color: #6466E9;
-    padding-bottom: 15px;
 }
 
-.signup-fields {
-    /* background-color: #6466E9; */
+.spacer {
+    padding-bottom: 12.5px;
+}
+
+.form {
+    margin-top: 11px;
+}
+
+.button {
+    margin-top: 15px;
+    padding: 5px 5px 5px 5px;
 }
