@@ -30,4 +30,4 @@ Please include relevant information about your system
 * Operating System:
 
 ## Other Notes
-This is optional, this is something that is not included here that needs to be noted.
+This is optional, something that is not included here that I need to take note of.
