@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ProgrammerIN - Salary Transparancy</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ProgrammerIN</h1>
+        <h3>Salary Transparancy</h3>
+    </div>
+    
+    <div class="forms">
+        <form id="job-form">
+          <p>Job Title:</p>
+          <input type="text" id="job-title" name="job-title" required>
+
+          <p>Company:</p>
+          <input type="text" id="company" name="company" required>
+    
+          <p>Location:</p>
+          <input type="text" id="location" name="location" required>
+    
+          <p>Salary:</p>
+          <input type="number" id="salary" name="salary" required>
+
+          <p>Years of Experience:</p>
+          <input type="number" id="yoe" name="yoe" required>
+    
+          <p>Employmemnt Type:</p>
+          <select id="employment-type">
+            <option>Select</option>
+            <option>Full-time</option>
+            <option>Part-time</option>
+            <option>Contract</option>
+          </select>
+    
+          <p>Education:</p>
+          <select id="education">
+            <option> </option>
+            <option>High School Diploma</option>
+            <option>Associate's Degree</option>
+            <option>Bachelor's Degree</option>
+            <option>Master's Degree</option>
+            <option>Doctorate Degree</option>
+            <option>GED</option>
+            <option>Other, not listed</option>
+          </select>
+    
+          <button type="submit">Submit</button>
+        </form>
+        
+        <div id="job-data">
+          <!-- Saved job data will be displayed here -->
+        </div>
+    </div>
+    
+    <div class="saved-data">
+        <h2>Saved Data:</h2>
+        <ul>
+            <li><span>Job Title:</span> <span id="job-title-display"></span></li>
+            <li><span>Company:</span> <span id="company-display"></span></li>
+            <li><span>Location:</span> <span id="location-display"></span></li>
+            <li><span>Salary:</span> <span id="salary-display"></span></li>
+            <li><span>Employment Type:</span> <span id="employment-type-display"></span></li>
+            <li><span>Education:</span> <span id="education-display"></span></li>
+        </ul>
+    </div>
+    
+    
+    <script>
+        const jobForm = document.querySelector('#job-form');
+        const savedData = document.querySelector('#job-data');
+    
+        jobForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form from submitting
+    
+            const jobTitle = document.querySelector('#job-title').value;
+            const company = document.querySelector("#company").value;
+            const location = document.querySelector('#location').value;
+            const salary = document.querySelector('#salary').value;
+            const employmentType = document.querySelector('#employment-type').value;
+            const education = document.querySelector('#education').value;
+    
+            // Create a new div element to hold the saved data
+            const jobData = document.createElement('div');
+            jobData.classList.add('job-data');
+    
+            // Create elements to display the saved data
+            const jobTitleDisplay = document.createElement('p');
+            jobTitleDisplay.textContent = `Job Title: ${jobTitle}`;
+            const companyDisplay = document.createElement('p');
+            companyDisplay.textContent = `Company: ${company}`;
+            const locationDisplay = document.createElement('p');
+            locationDisplay.textContent = `Location: ${location}`;
+            const salaryDisplay = document.createElement('p');
+            salaryDisplay.textContent = `Salary: $${salary}`;
+            const employmentTypeDisplay = document.createElement('p');
+            employmentTypeDisplay.textContent = `Employment Type: ${employmentType}`;
+            const educationDisplay = document.createElement('p');
+            educationDisplay.textContent = `Education: ${education}`;
+    
+            // Append the saved data to the new div element
+            jobData.appendChild(jobTitleDisplay);
+            jobData.appendChild(companyDisplay);
+            jobData.appendChild(locationDisplay);
+            jobData.appendChild(salaryDisplay);
+            jobData.appendChild(employmentTypeDisplay);
+            jobData.appendChild(educationDisplay);
+    
+            // Append the new div element to the "Saved Data" section
+            savedData.appendChild(jobData);
+    
+            // Clear the form fields
+            jobForm.reset();
+        });
+    </script>
+    
+<body>
+<html>
