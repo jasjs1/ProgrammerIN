@@ -28,6 +28,7 @@ Folder path of bug:
 Please include relevant information about your system
 
 * Operating System:
+* Web-Browser: 
 
 ## Other Notes
 This is optional, something that is not included here that I need to take note of.
