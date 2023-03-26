@@ -68,6 +68,10 @@
   </script>
 	</div>
 
+
+		</script>
+	</div>
+
 	<div class="profile-icon">
 		<select id="profile-select">
 			<option value="1">Profile Icon 1</option>
@@ -77,6 +81,45 @@
 		<img id="profile-image" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
 	</div>
 
+	<div class="follower-class">
+		<p>Total Profile Follows: <span id="follower-count">0</span></p>
+		<button id="follow-button">Follow</button>
+		
+		
+		<script>
+// Get the follow button and follower count elements
+const followButton = document.getElementById('follow-button');
+const followerCountElement = document.getElementById('follower-count');
+
+// Check if there's a stored follower count in local storage
+let followerCount = localStorage.getItem('followerCount');
+if (!followerCount) {
+  // If there's no follower count in local storage, set it to 0
+  followerCount = 0;
+}
+
+// Update the follower count element with the current follower count
+followerCountElement.textContent = followerCount;
+
+// Update the button text with the current follower count
+followButton.textContent = `Follow`;
+
+// Add a click event listener to the button
+followButton.addEventListener('click', () => {
+  // Add 1 to the follower count
+  followerCount++;
+  
+  // Save the updated follower count to local storage
+  localStorage.setItem('followerCount', followerCount);
+  
+  // Update the follower count element and button text with the new follower count
+  followerCountElement.textContent = followerCount;
+  followButton.textContent = `Follow (${followerCount})`;
+});
+
+		</script>
+	</div>
+
 		<div class="basic-info">
 			<h3><strong>Basic Information:</strong></h3>
 			<p>Name: <span id="name"></span></p>
@@ -84,6 +127,8 @@
 			<p>Looking For Jobs: <span id="hiringStatus"></span></p>
 			<p>Username: <span id="username">@username</span></p>
 		  </div>
+
+		  
 		  <table>
 			<thead>
 				<tr>
@@ -604,6 +649,13 @@
 	});
 	
 	</script>
+
+	<div class="paytransparency-header">
+		<h2>Pay Transparancy</h2>
+		<p>Salaries that you have been paid in the past, that you are open to share.</p>
+	</div>
+
+	<div class=""
   
 
   <script src="script.js"></script>
