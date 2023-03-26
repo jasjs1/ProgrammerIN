@@ -54,6 +54,9 @@
                 <option>Hybrid</option>
                 <option>Remote</option>
             </select>
+
+            <p>Today's Date:</p>
+            <input type="date" name="dateJoined" placeholder="todays joined" required>
             
             <script>
                 const workLocationSelect = document.getElementById('work-location');
@@ -69,6 +72,14 @@
                 if (storedWorkLocation) {
                     workLocationSelect.value = storedWorkLocation;
                 }
+
+                const dateJoinedInput = document.querySelector('input[name="dateJoined"]');
+            dateJoinedInput.addEventListener('change', () => {
+            localStorage.setItem('dateJoined', dateJoinedInput.value);
+            });
+
+
+
             </script>
             
             
