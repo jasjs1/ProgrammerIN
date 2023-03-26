@@ -4,59 +4,127 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet.css">
-    <title>ProgrammerIN - Employer - Signup</title>
+    <link rel="stylesheet" href="style.css">
+    <title>ProgrammerIN - Signup</title>
 </head>
 <body>
 
-    <div class="header">
-        <h1>ProgrammerIN</h1>
-        <h2>Employer Signup</h2>
-        <p>Search for employees.</p>
+    <div class="welcome-msg">
+        <h1>
+            ProgrammerIN - Signup
+        </h1>
+        <p>
+            Hello, fellow developer!
+        </p>
     </div>
 
-    <div class="forms">
-        <form id="job-form">
+    <div class="signup-fields">
+        <form id="signup-form">
+            
             <p>Name:</p>
             <input type="text" name="name" placeholder="first and last name">
-            
+    
             <p>Email:</p>
-            <input type="email" name="email" placeholder="email">
+            <input type="email" name="email" placeholder="email address">
     
-            <p>Company:</p>
-            <input type="text" name="company" placeholder="company name">
+            <p>Password:</p>
+            <input type="password" name="password" placeholder="enter password">
     
-            <p>Employment Type:</p>
-            <input type="text" name="employment" placeholder="full time, part time, etc.">
+            <p>Username:</p>
+            <input type="text" name="username" placeholder="username dont to name">
+    
+            <p>Location:</p>
+            <input type="text" name="location" placeholder="city and country">
+    
+            <p>Current role:</p>
+            <input type="text" name="role" placeholder="current role at company name">
+            <p>Role at:</p>
+            <input type="text" name="roleAt" placeholder="company name">
+            <p id="roleAt"></p>
+
+            <p>Hiring Status:</p>
+            <input type="text" name="hiringStatus" placeholder="Yes or No">
+            <p id="hiringStatus"></p>
+
+            <p>Working Location Status</p>
+            <select id="work-location">
+                <option></option>
+                <option>In Office</option>
+                <option>Work From Home</option>
+                <option>Hybrid</option>
+                <option>Remote</option>
+            </select>
+
+            <p>Today's Date:</p>
+            <input type="date" name="dateJoined" placeholder="todays joined" required>
             
-            <p>Role:</p>
-            <input type="text" name="role" placeholder="role">
-    
-            <button type="submit" onclick="window.location.href='http://127.0.0.1:5500/employer/app/emp-app.html';">Submit</button>
-        </form>
+            <script>
+                const workLocationSelect = document.getElementById('work-location');
+            
+                // Add an event listener to the select element
+                workLocationSelect.addEventListener('change', function() {
+                    // Save the selected option to LocalStorage
+                    localStorage.setItem('workLocation', workLocationSelect.value);
+                });
+            
+                // When the page loads, set the selected option to the value stored in LocalStorage (if any)
+                const storedWorkLocation = localStorage.getItem('workLocation');
+                if (storedWorkLocation) {
+                    workLocationSelect.value = storedWorkLocation;
+                }
+
+                const dateJoinedInput = document.querySelector('input[name="dateJoined"]');
+            dateJoinedInput.addEventListener('change', () => {
+            localStorage.setItem('dateJoined', dateJoinedInput.value);
+            });
+
+
+
+            </script>
+            
+            
+            <button type="submit" onclick="window.location.href='http://127.0.0.1:5500/.app/app.html';" value="Submit">Submit</button>
+
+
         </form>
     </div>
+
     
     <script>
-        const form = document.getElementById('job-form');
+        const form = document.querySelector('#signup-form');
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // prevent form submission
-            
-            const formData = new FormData(form);
-            for (const [key, value] of formData.entries()) {
-                // save form field data to local storage with key as field name
-                const fieldKey = `employer-${key}`;
-                localStorage.setItem(fieldKey, value);
-            }
-            
-            // clear form inputs
-            form.reset();
+          event.preventDefault(); // prevent form submission
+          
+          // get form data
+          const name = form.elements['name'].value;
+          const email = form.elements['email'].value;
+          const password = form.elements['password'].value;
+          const username = form.elements['username'].value;
+          const location = form.elements['location'].value;
+          const currentRole = form.elements['role'].value;
+          const placeOfEmployment = form.elements['roleAt'].value
+          const hiringStatus = form.elements['hiringStatus'].value
+          
+          // store form data in localStorage
+          localStorage.setItem('name', name);
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
+          localStorage.setItem('username', username);
+          localStorage.setItem('location', location);
+          localStorage.setItem('currentRole', currentRole);
+          localStorage.setItem('roleAt', placeOfEmployment)
+          localStoragee.setItem('hiringStatus', hiringStatus)
+          
+          // update text content on the page
+          document.querySelector('#name').textContent = name;
+          document.querySelector('#email').textContent = email;
+          document.querySelector('#password').textContent = password;
+          document.querySelector('#username').textContent = username;
+          document.querySelector('#location').textContent = location;
+          document.querySelector('#current-role').textContent = currentRole;
+          document.querySelector('#roleAt').textContent = placeOfEmployment;
+          document.querySelector('#hiringStatus').textContent = hiringStatus;
         });
-    </script>
-    
-    
-    
-    
-    
+      </script>
 </body>
 </html>
