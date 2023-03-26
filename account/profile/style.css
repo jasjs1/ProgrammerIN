@@ -74,18 +74,26 @@ body {
 }
 
 .description-header {
+    padding-top: 7.5px;
     color: #6466E9;
-    padding-top: 15.5px;
 }
 
 .interests-header {
+    padding-top: 7.5px;
     color: #6466E9;
 }
 
 .intrests-header {
+    padding-top: 7.5px;
     color: #6466E9;
 }
 
 .listens-header {
+    padding-top: 7.5px;
+    color: #6466E9;
+}
+
+.paytransparency-header {
+    padding-top: 7.5px;
     color: #6466E9;
 }
