@@ -652,10 +652,115 @@
 
 	<div class="paytransparency-header">
 		<h2>Pay Transparancy</h2>
-		<p>Salaries that you have been paid in the past, that you are open to share.</p>
+		<p>Salaries that you have been paid in the past, that you are open to share. (scroll to right)</p>
 	</div>
 
-	<div class=""
+	<div class="pay-forms">
+		<form class="job-form">
+		  <label for="job-title">Job Title:</label>
+		  <input type="text" id="job-title" name="job-title" required>
+	  
+		  <label for="company">Company:</label>
+		  <input type="text" id="company" name="company" required>
+	  
+		  <label for="location">Location:</label>
+		  <input type="text" id="location" name="location" required>
+	  
+		  <label for="salary">Salary:</label>
+		  <input type="number" id="salary" name="salary" required>
+	  
+		  <label for="yoe">Years of Experience:</label>
+		  <input type="number" id="yoe" name="yoe" required>
+	  
+		  <label for="employment-type">Employment Type:</label>
+		  <select id="employment-type" name="employment-type">
+			<option value="">Select</option>
+			<option value="full-time">Full-time</option>
+			<option value="part-time">Part-time</option>
+			<option value="contract">Contract</option>
+		  </select>
+	  
+		  <label for="education">Education:</label>
+		  <select id="education" name="education">
+			<option value=""> </option>
+			<option value="high-school-diploma">High School Diploma</option>
+			<option value="associate-degree">Associate's Degree</option>
+			<option value="bachelor-degree">Bachelor's Degree</option>
+			<option value="master-degree">Master's Degree</option>
+			<option value="doctorate-degree">Doctorate Degree</option>
+			<option value="ged">GED</option>
+			<option value="other">Other, not listed</option>
+		  </select>
+	  
+		  <button type="submit">Submit</button>
+		</form>
+		<script>
+			// Get the form element
+const form = document.querySelector('.job-form');
+
+// Add an event listener to the form on submission
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent form submission
+  
+  // Get the form values
+  const jobTitle = document.getElementById('job-title').value;
+  const company = document.getElementById('company').value;
+  const location = document.getElementById('location').value;
+  const salary = document.getElementById('salary').value;
+  const yoe = document.getElementById('yoe').value;
+  const employmentType = document.getElementById('employment-type').value;
+  const education = document.getElementById('education').value;
+  
+  // Save the form data to local storage
+  localStorage.setItem('jobTitle', jobTitle);
+  localStorage.setItem('company', company);
+  localStorage.setItem('location', location);
+  localStorage.setItem('salary', salary);
+  localStorage.setItem('yoe', yoe);
+  localStorage.setItem('employmentType', employmentType);
+  localStorage.setItem('education', education);
+  
+  // Display the saved data in an h2 element
+  const hello = document.getElementById('hello');
+  hello.innerHTML = `Job Salary Transparency:<br>
+    Job Title: ${jobTitle}<br>
+    Company: ${company}<br>
+    Location: ${location}<br>
+    Salary: ${salary}<br>
+    Years of Experience: ${yoe}<br>
+    Employment Type: ${employmentType}<br>
+    Education: ${education}`;
+});
+
+// Check if there is any saved data in local storage on page load
+window.addEventListener('load', function() {
+  const jobTitle = localStorage.getItem('jobTitle');
+  const company = localStorage.getItem('company');
+  const location = localStorage.getItem('location');
+  const salary = localStorage.getItem('salary');
+  const yoe = localStorage.getItem('yoe');
+  const employmentType = localStorage.getItem('employmentType');
+  const education = localStorage.getItem('education');
+  
+  // If there is saved data, display it in the h2 element
+  if (jobTitle && company && location && salary && yoe && employmentType && education) {
+    const hello = document.getElementById('hello');
+    hello.innerHTML = `Job Salary Transparency:<br>
+      Job Title: ${jobTitle}<br>
+      Company: ${company}<br>
+      Location: ${location}<br>
+      Salary: ${salary}<br>
+      Years of Experience: ${yoe}<br>
+      Employment Type: ${employmentType}<br>
+      Education: ${education}`;
+  }
+});
+
+		</script>
+	<p id="hello">Job Salary Transparency</p>
+
+	  </div>
+	  
   
 
   <script src="script.js"></script>
