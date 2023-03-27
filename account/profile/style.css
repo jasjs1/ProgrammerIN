@@ -8,6 +8,7 @@ body {
 .follower-class {
     margin-top: 15px;
     padding-top: 15px;
+    display: flex;
 }
 
 
@@ -79,26 +80,35 @@ body {
 }
 
 .description-header {
-    padding-top: 7.5px;
+    margin-top: 7.5px;
     color: #6466E9;
 }
 
 .interests-header {
-    padding-top: 7.5px;
+    margin-top: 7.5px;
     color: #6466E9;
 }
 
 .intrests-header {
-    padding-top: 7.5px;
+    margin-top: 7.5px;
     color: #6466E9;
 }
 
 .listens-header {
-    padding-top: 7.5px;
+    margin-top: 7.5px;
     color: #6466E9;
 }
 
 .paytransparency-header {
-    padding-top: 7.5px;
+    margin-top: 7.5px;
+    color: #6466E9;
+}
+
+.job-form {
+    display: inline-flex !important;
+}
+
+.job-rating-header {
+    margin-top: 7.5px;
     color: #6466E9;
 }
