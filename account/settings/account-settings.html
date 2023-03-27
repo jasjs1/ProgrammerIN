@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ProgrammerIN - Account Settings</title>
+</head>
+<body>
+
+  <div class="header">
+    <h1>ProgrammerIN</h1>
+    <h3>Account Settings</h3>
+    <p>Additional settings for your ProgrammerIN Profile.</p>
+  </div>
+
+    <div class="extra-fields-header">
+        <h2>Additional Profile:</h2>
+    </div>
+
+    <div class="forms">
+        <p>Location:</p>
+        <input type="text" name="location" placeholder="city and country">
+      
+        <p>Current role:</p>
+        <input type="text" name="role" placeholder="current role at company name">
+        <p>Role at:</p>
+        <input type="text" name="roleAt" placeholder="company name">
+        <p id="roleAt"></p>
+      
+        <p>Hiring Status:</p>
+        <select>
+          <option> </option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      
+        <p>Working Location Status</p>
+        <select id="work-location">
+          <option></option>
+          <option>In Office</option>
+          <option>Work From Home</option>
+          <option>Hybrid</option>
+          <option>Remote</option>
+        </select>
+      
+        <button id="save-button">Save</button>
+
+        <script>
+          const saveButton = document.getElementById("save-button");
+          saveButton.addEventListener("click", () => {
+            window.location.href = "http://127.0.0.1:5500/.app/app.html";
+          });
+        </script>
+        
+
+      </div>
+      
+      <div class="account-privacy-header">
+        <h3>Profile Privacy:</h3>
+        <p>Privacy Center</p>
+      </div>
+      
+    
+</body>
+<script src="script.js"></script>
+</html>
