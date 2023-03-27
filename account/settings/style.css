@@ -1,0 +1,16 @@
+body {
+    background: #1c1f23;
+    color: white;
+    font-family: 'Open Sans', sans-serif;   
+}
+
+.header {
+    color: #6466E9;
+    margin-bottom: 15px;
+}
+
+.account-privacy-header {
+    padding-top: 35px;
+    font-weight: 800;
+    color: #6466E9;
+}
