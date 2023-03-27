@@ -195,7 +195,7 @@
 <head>
   <title>Job Experiences</title>
 </head>
-<body>
+<>
 	
 	<div class="header">
 		<h2>Past Experiences:</h2>
@@ -760,6 +760,96 @@ window.addEventListener('load', function() {
 	<p id="hello">Job Salary Transparency</p>
 
 	  </div>
+
+	  <div class="job-rating-header">
+		<h3>Job Ratings:</h3>
+	  </div>
+	  
+<div class="job-field">
+  <p>Job Title:</p>
+  <input type="text" id="job-title" name="job-title" required>
+
+  <p>Company:</p>
+  <input type="text" id="emp-company" name="emp-company" required>
+
+  <p>Job Rating:</p>
+  <select id="job-rating" required>
+    <option>Select Rating</option>
+    <option>1 Star</option>
+    <option>2 Stars</option>
+    <option>3 Stars</option>
+    <option>4 Stars</option>
+    <option>5 Stars</option>
+  </select>
+
+  <p>Level:</p>
+  <select id="level" required>
+    <option>Select</option>
+    <option>Intern</option>
+    <option>Junior Software Engineer</option>
+    <option>Software Engineer</option>
+    <option>Senior Software Engineer</option>
+    <option>Staff Software Engineer</option>
+    <option>Principal Software Engineer</option>
+  </select>
+
+  <p>Compensation:</p>
+  <input type="number" id="compensation-ct" name="compensation-ct">
+
+  <button id="submit-btn">Submit</button>
+</div>
+
+<script>
+  // Get the submit button
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Add an event listener to the submit button
+  submitBtn.addEventListener('click', function(event) {
+    // Get the values entered by the user
+    const jobTitle = document.getElementById('job-title').value;
+    const company = document.getElementById('emp-company').value;
+    const jobRating = document.getElementById('job-rating').value;
+    const level = document.getElementById('level').value;
+    const compensation = document.getElementById('compensation-ct').value;
+
+    // Save the values in local storage
+    localStorage.setItem('jobTitle', jobTitle);
+    localStorage.setItem('company', company);
+    localStorage.setItem('jobRating', jobRating);
+    localStorage.setItem('level', level);
+    localStorage.setItem('compensation', compensation);
+  });
+
+  // Load the values from local storage when the page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const jobTitle = localStorage.getItem('jobTitle');
+    const company = localStorage.getItem('company');
+    const jobRating = localStorage.getItem('jobRating');
+    const level = localStorage.getItem('level');
+    const compensation = localStorage.getItem('compensation');
+
+    if (jobTitle) {
+      document.getElementById('job-title').value = jobTitle;
+    }
+
+    if (company) {
+      document.getElementById('emp-company').value = company;
+    }
+
+    if (jobRating) {
+      document.getElementById('job-rating').value = jobRating;
+    }
+
+    if (level) {
+      document.getElementById('level').value = level;
+    }
+
+    if (compensation) {
+      document.getElementById('compensation-ct').value = compensation;
+    }
+  });
+</script>
+
 	  
   
 
