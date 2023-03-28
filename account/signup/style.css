@@ -13,3 +13,13 @@ body {
 .signup-fields {
     /* background-color: #6466E9; */
 }
+
+.follow-me-header {
+    color: #6466E9;
+    margin-top: 20px;
+}
+
+.links {
+    padding: 15px 15px 15px 15px;
+    color: white;
+}
