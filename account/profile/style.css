@@ -112,3 +112,11 @@ body {
     margin-top: 7.5px;
     color: #6466E9;
 }
+
+.job-field {
+    display: inline-flex !important;
+}
+
+.personal-dictionaries-header {
+    color: #6466E9;
+}
