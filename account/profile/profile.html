@@ -436,61 +436,60 @@
   
 	<script>
 		const educationForm = document.getElementById('education-form');
-		const savedEducationList = document.getElementById('saved-education');
-		
-		educationForm.addEventListener('submit', function(event) {
-		  event.preventDefault(); // prevent the form from submitting
-		
-		  const schoolInput = document.getElementById('school');
-		  const degreeInput = document.getElementById('degree');
-		  const schoolType = document.getElementById('school-type')
-		  const yearInput = document.getElementById('year');
-		
-		  const education = {
-			school: schoolInput.value,
-			degree: degreeInput.value,
-			type: schoolType.value,
-			year: yearInput.value
-		  };
-		
-		  // save the education to local storage
-		  let savedEducation = JSON.parse(localStorage.getItem('education')) || [];
-		  savedEducation.push(education);
-		  localStorage.setItem('education', JSON.stringify(savedEducation));
-		
-		  // display the saved education in the list
-		  savedEducationList.innerHTML = '';
-		  savedEducation.forEach(function(education) {
-			const listItem = document.createElement('li');
-			listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
-			savedEducationList.appendChild(listItem);
-		  });
-	  
-// display the saved education in the heading
-const educationHeading = document.getElementById('educations');
-educationHeading.textContent = 'Education';
+const savedEducationList = document.getElementById('saved-education');
+const educationHeading = document.querySelector('h3');
 
-// clear the form inputs
-schoolInput.value = '';
-degreeInput.value = '';
-schoolType.value = '';
-yearInput.value = '';
+// load saved education from local storage on page load
+const savedEducation = JSON.parse(localStorage.getItem('education')) || [];
+savedEducation.forEach(function(education) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
+  savedEducationList.appendChild(listItem);
+});
 
+// display the education heading if there are saved education items
+if (savedEducation.length > 0) {
+  educationHeading.textContent = `Educations (${savedEducation.length})`;
+} else {
+  educationHeading.style.display = 'none';
+}
 
-		
-		// load saved education from local storage on page load
-		const savedEducation = JSON.parse(localStorage.getItem('education')) || [];
-		savedEducation.forEach(function(education) {
-		  const listItem = document.createElement('li');
-		  listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
-		  savedEducationList.appendChild(listItem);
-		});
-	  
-		// display the education heading if there are saved education items
-		if (savedEducation.length > 0) {
-		  const educationHeading = document.querySelector('h3');
-		  educationHeading.textContent = `Educations (${savedEducation.length})`;
-		}
+educationForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the form from submitting
+
+  const schoolInput = document.getElementById('school');
+  const degreeInput = document.getElementById('degree');
+  const schoolTypeInput = document.getElementById('school-type');
+  const yearInput = document.getElementById('year');
+
+  const education = {
+    school: schoolInput.value,
+    degree: degreeInput.value,
+    type: schoolTypeInput.value,
+    year: yearInput.value
+  };
+
+  // save the education to local storage
+  let savedEducation = JSON.parse(localStorage.getItem('education')) || [];
+  savedEducation.push(education);
+  localStorage.setItem('education', JSON.stringify(savedEducation));
+
+  // display the saved education in the list
+  const listItem = document.createElement('li');
+  listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
+  savedEducationList.appendChild(listItem);
+
+  // display the education heading
+  educationHeading.style.display = 'block';
+  educationHeading.textContent = `Educations (${savedEducation.length})`;
+
+  // clear the form inputs
+  schoolInput.value = '';
+  degreeInput.value = '';
+  schoolTypeInput.value = '';
+  yearInput.value = '';
+});
+
 	  </script>
 	  
   </div>
