@@ -42,6 +42,11 @@ body {
     text-align: left;
 }
 
+.connections-header {
+    margin-top: 20.5px;
+    color: #6466E9;
+}
+
 .heading {
     color: #6466E9;
 }
@@ -52,6 +57,7 @@ body {
 }
 
 .description-div {
+    margin-top: 20.5px;
     padding-top: 32.5px;
     padding-bottom: 4.5px;
 }
