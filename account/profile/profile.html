@@ -12,7 +12,7 @@
 			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
-		}
+		}77
 		.container {
 			max-width: 600px;
 			margin: auto;
@@ -258,6 +258,85 @@
 		  document.getElementById("new-description").value = descriptionText.textContent || "";
 		});
 	  </script>
+
+	  <div class="connections-header">
+
+		<h2>Connections</h2>
+		<p>List people that you have connected with in real life.</p>
+
+	  </div>
+
+	  div class="connections-form">
+      <label for="connection-name">Connected With:</label>
+      <input type="text" id="connection-name" required>
+
+      <label for="connected-date">Date Connected:</label>
+      <input type="date" id="connected-date">
+
+      <label for="connected-location">Location Connected:</label>
+      <input type="text" id="connected-location">
+
+      <label for="reason-for-meetup">Reason For Meetup:</label>
+      <input type="text" id="reason-for-meetup">
+
+      <button type="button" onclick="addConnection()">Add Connection</button>
+    </div>
+
+    <div class="connections-list">
+      <h2>Connections</h2>
+      <ul id="connections"></ul>
+    </div>
+
+    <script>
+		// Store the connection data in an array
+let connections = [];
+
+// Add a connection to the connections array and update local storage
+function addConnection(name, date, location, reason) {
+  connections.push({ name, date, location, reason });
+  localStorage.setItem("connections", JSON.stringify(connections));
+
+  // Hide the form after adding a connection
+  document.querySelector(".connections-form").style.display = "none";
+
+  // Display the connections list
+  displayConnections();
+}
+
+// Load connections from local storage and display them on the page
+function loadConnections() {
+  // Get the connections from local storage
+  const storedConnections = localStorage.getItem("connections");
+
+  if (storedConnections !== null) {
+    // Parse the JSON string into an array of objects
+    connections = JSON.parse(storedConnections);
+
+    // Display the connections list
+    displayConnections();
+  }
+}
+
+// Display the connections list on the page
+function displayConnections() {
+  // Get the ul element to display the connections
+  const connectionsList = document.getElementById("connections");
+
+  // Clear the ul element
+  connectionsList.innerHTML = "";
+
+  // Loop through the connections and add them to the ul element
+  connections.forEach((connection) => {
+    const li = document.createElement("li");
+    li.textContent = `${connection.name} - ${connection.date} - ${connection.location} - ${connection.reason}`;
+    connectionsList.appendChild(li);
+  });
+}
+
+// Call loadConnections when the page is loaded
+window.addEventListener("load", loadConnections);
+
+    </script>
 	  
 
 <!DOCTYPE html>
@@ -1079,4 +1158,3 @@ window.addEventListener('load', function() {
 </body>
 </html>
 
- 
