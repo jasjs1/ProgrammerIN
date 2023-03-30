@@ -55,6 +55,11 @@ body {
     align-content: 1px;
     padding: 2px 0;
 }
+/* 
+.connections-list {
+    display: none;
+  } */
+  
 
 .heading {
     color: #6466E9;
