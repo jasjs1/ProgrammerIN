@@ -1,114 +1,1173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equi∏v="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>ProgrammerIN - App</title>
+	<title>ProgrammerIN - Profile</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<title>ProgrammerIN - Profile</title>
+
+	
+	
+	<style>
+		/* CSS For table of data */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 600px;
+			margin: auto;
+			padding: 20px;
+		}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #1c1f23;
+		}
+		input[type="text"] {
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			margin-bottom: 10px;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+	</style>
+
+
 </head>
 <body>
-  <div class="topnav">
-    <a class="active" href="#branding">ProgrammerIN</a>
-    <!-- <a class="active" href="#home">Home</a> -->
-    <a class="Account" href="http://127.0.0.1:5500/account/profile/profile.html">Profile</a>
-    <a class="Account" href="http://127.0.0.1:5500/account/settings/account-settings.html">Account Settings</a>
-    <a class="notification" href="http://127.0.0.1:5500/notifications/notifs.html">Notificiations</a>
-    <a class="Account" href="http://127.0.0.1:5500/freelancer/freelancer.html">Freelancer</a>
-    <a class="Account" href="http://127.0.0.1:5500/account/login/login.html">Log out</a>
+
+	<div class="topnav">
+		<a class="active" href="#branding">ProgrammerIN</a>
+		<!-- <a class="active" href="#home">Home</a> -->
+		<a class="Account" href="http://127.0.0.1:5500/account/profile/profile.html">Profile</a>
+		<a class="notification" href="http://127.0.0.1:5500/notifications/notifs.html">Notificiations</a>
+		<a class="Account" href="http://127.0.0.1:5500/freelancer/freelancer.html">Freelancer</a>
+		<a class="Account" href="http://127.0.0.1:5500/account/login/login.html">Log out</a>
+	  </div>
+
+
+	<div class="container">
+		<h1>Profile View: <span id="username"></span></h1>
+<script>
+	// Retrieve the name from local storage
+	const name = localStorage.getItem('name');
+	
+	// Create a new heading element and set its text content
+	const heading = document.createElement('h1');
+	heading.textContent = name + "'s Profile";
+	
+	// Remove the existing heading element from the document
+	const existingHeading = document.querySelector('h1');
+	existingHeading.parentNode.removeChild(existingHeading);
+	
+	// Insert the new heading element at the top of the document body
+	document.body.insertBefore(heading, document.body.firstChild);
+  </script>
+	</div>
+
+
+		</script>
+	</div>
+
+	<div class="profile-icon">
+		<select id="profile-select">
+			<option value="1">Profile Icon 1</option>
+			<option value="2">Profile Icon 2</option>
+			<option value="3">Profile Icon 3</option>
+		</select>
+		<img id="profile-image" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+	</div>
+
+	<div class="follower-class">
+		<p>Total Profile Follows: <span id="follower-count">0</span></p>
+	</div>
+	
+	<button id="follow-button">Follow</button>
+	<button id="unfollow-button" style="display:none">Unfollow</button>
+	
+	<script>
+	  window.onload = () => {
+		const followButton = document.getElementById("follow-button");
+		const unfollowButton = document.getElementById("unfollow-button");
+		const followerCountElement = document.getElementById("follower-count");
+	
+		// Check if there's a stored follower count in local storage
+		let followerCount = localStorage.getItem("followerCount");
+		if (!followerCount) {
+		  followerCount = 0;
+		}
+	
+		// Update the follower count element with the current follower count
+		followerCountElement.textContent = followerCount;
+	
+		// Update the button text based on whether the user is following or not
+		if (followerCount > 0) {
+		  followButton.style.display = "none";
+		  unfollowButton.style.display = "inline-block";
+		} else {
+		  followButton.style.display = "inline-block";
+		  unfollowButton.style.display = "none";
+		}
+	
+		// Add a click event listener to the follow button
+		followButton.addEventListener("click", () => {
+		  // Add 1 to the follower count
+		  followerCount++;
+	
+		  // Save the updated follower count to local storage
+		  localStorage.setItem("followerCount", followerCount);
+	
+		  // Update the follower count element and button display based on whether the user is following or not
+		  followerCountElement.textContent = followerCount;
+		  followButton.style.display = "none";
+		  unfollowButton.style.display = "inline-block";
+		});
+	
+		// Add a click event listener to the unfollow button
+		unfollowButton.addEventListener("click", () => {
+		  // Subtract 1 from the follower count
+		  followerCount--;
+	
+		  // Save the updated follower count to local storage
+		  localStorage.setItem("followerCount", followerCount);
+	
+		  // Update the follower count element and button display based on whether the user is following or not
+		  followerCountElement.textContent = followerCount;
+		  followButton.style.display = "inline-block";
+		  unfollowButton.style.display = "none";
+		});
+	  };
+	</script>
+	
+
+
+
+		<div class="basic-info">
+			<h3><strong>Basic Information:</strong></h3>
+			<p>Name: <span id="name"></span></p>
+			<p>Email: <span id="email"></span></p>
+			<p>Looking For Jobs: <span id="hiringStatus"></span></p>
+			<p>Username: <span id="username">@username</span></p>
+		  </div>
+
+		  
+		  <table>
+			<thead>
+				<tr>
+					<th>Other Information</th>
+					<th>Token</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr> 
+					<td>Location</td>
+					<td id="location"></td>
+				</tr>
+				<tr>
+					<td>Current Role</td>
+					<td id="currentRole"></td>
+				</tr>
+				<tr>
+					<td>Role At</td>
+					<td id="roleAt"></td>
+				</tr>
+				<tr>
+					<td>Working Location Status</td>
+					<td id="workLocation"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		const tokens = ['name', 'email', 'username', 'location', 'currentRole', 'roleAt', 'hiringStatus', 'workLocation'];
+		const values = {};
+		
+		// Check if tokens are in local storage
+		for (let token of tokens) {
+			if (localStorage.getItem(token)) {
+				values[token] = localStorage.getItem(token);
+			} else {
+				values[token] = prompt(`Please enter your ${token}:`);
+				localStorage.setItem(token, values[token]);
+			}
+			document.getElementById(token).textContent = values[token];
+		}
+	</script>
+
+	<div class="description-header">
+		<h2>Description:</h2>
+	</div>
+	<div>
+		<p id="description-text"></p>
+		<button id="create-description-btn">Create Description</button>
+	  </div>
+	  
+	  <div id="description-modal" style="display: none">
+		<label for="new-description">Enter your new description:</label>
+		<input type="text" id="new-description">
+		<button id="save-description-btn">Save Description</button>
+		<button id="cancel-description-btn">Cancel</button>
+	  </div>
+	  
+	  <script>
+		const descriptionText = document.getElementById("description-text");
+		const createDescriptionBtn = document.getElementById("create-description-btn");
+		const descriptionModal = document.getElementById("description-modal");
+		const saveDescriptionBtn = document.getElementById("save-description-btn");
+		const cancelDescriptionBtn = document.getElementById("cancel-description-btn");
+		const maxChars = 150;
+	  
+		// Load description from local storage
+		const description = localStorage.getItem("description");
+		if (description) {
+		  descriptionText.textContent = description;
+		}
+	  
+		// Open description modal
+		createDescriptionBtn.addEventListener("click", () => {
+		  descriptionModal.style.display = "block";
+		  document.getElementById("new-description").value = description || "";
+		});
+	  
+		// Save description
+		saveDescriptionBtn.addEventListener("click", () => {
+		  const newDescription = document.getElementById("new-description").value;
+		  const charCount = newDescription.length;
+	  
+		  if (charCount > 150) {
+			alert(`Description exceeds maximum length by ${charCount - 150} characters. The description character length needs to be 150 characters`);
+		  } else {
+			localStorage.setItem("description", newDescription);
+			descriptionText.textContent = newDescription;
+			descriptionModal.style.display = "none";
+		  }
+		});
+	  
+		// Cancel editing description
+		cancelDescriptionBtn.addEventListener("click", () => {
+		  descriptionModal.style.display = "none";
+		});
+	  
+		// Edit description
+		descriptionText.addEventListener("click", () => {
+		  descriptionModal.style.display = "block";
+		  document.getElementById("new-description").value = descriptionText.textContent || "";
+		});
+	  </script>
+
+	  <div class="connections-header">
+
+		<h2>Connections</h2>
+		<p>List people that you have connected with in real life.</p>
+
+	  </div>
+
+	  div class="connections-form">
+      <label for="connection-name">Connected With:</label>
+      <input type="text" id="connection-name" required>
+
+      <label for="connected-date">Date Connected:</label>
+      <input type="date" id="connected-date">
+
+      <label for="connected-location">Location Connected:</label>
+      <input type="text" id="connected-location">
+
+      <label for="reason-for-meetup">Reason For Meetup:</label>
+      <input type="text" id="reason-for-meetup">
+
+      <button type="button" onclick="addConnection()">Add Connection</button>
+    </div>
+
+    <div class="connections-list">
+      <h2>Connections</h2>
+      <ul id="connections"></ul>
+    </div>
+
+    <script>
+		// Store the connection data in an array
+let connections = [];
+
+// Add a connection to the connections array and update local storage
+function addConnection(name, date, location, reason) {
+  connections.push({ name, date, location, reason });
+  localStorage.setItem("connections", JSON.stringify(connections));
+
+  // Hide the form after adding a connection
+  document.querySelector(".connections-form").style.display = "none";
+
+  // Display the connections list
+  displayConnections();
+}
+
+// Load connections from local storage and display them on the page
+function loadConnections() {
+  // Get the connections from local storage
+  const storedConnections = localStorage.getItem("connections");
+
+  if (storedConnections !== null) {
+    // Parse the JSON string into an array of objects
+    connections = JSON.parse(storedConnections);
+
+    // Display the connections list
+    displayConnections();
+  }
+}
+
+// Display the connections list on the page
+function displayConnections() {
+  // Get the ul element to display the connections
+  const connectionsList = document.getElementById("connections");
+
+  // Clear the ul element
+  connectionsList.innerHTML = "";
+
+  // Loop through the connections and add them to the ul element
+  connections.forEach((connection) => {
+    const li = document.createElement("li");
+    li.textContent = `${connection.name} - ${connection.date} - ${connection.location} - ${connection.reason}`;
+    connectionsList.appendChild(li);
+  });
+}
+
+// Call loadConnections when the page is loaded
+window.addEventListener("load", loadConnections);
+
+    </script>
+	  
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Experiences</title>
+</head>
+	
+<div class="header">
+	<h2>Past Experiences:</h2>
+	<p id="intro-text">Past work places that <span id="name-placeholder"></span> has worked at</p>
+	<script>
+	  // Retrieve the name from local storage, if any
+	  const name = localStorage.getItem('name');
+  
+	  // Update the intro text with the name, if available
+	  const introText = document.getElementById('intro-text');
+	  const namePlaceholder = document.getElementById('name-placeholder');
+	  if (name) {
+		namePlaceholder.textContent = name;
+	  } else {
+		introText.textContent = "Past work places";
+	  }
+	</script>
   </div>
   
-      <div class="tab">
-        <button class="tablinks" onclick="window.location.href='http://127.0.0.1:5500/.app/app.html'">JOBS</button>
-        <button class="tablinks" onclick="window.location.href='http://127.0.0.1:5500/corportation/activeCorportations/activecorps.html'">CORPORATIONS</button>
+  <form id="experience-form">
+	<label for="job-role">Job Role:</label>
+	<input type="text" id="job-role" name="job-role" required>
+  
+	<label for="company-employed">Company</label>
+	<input type="text" id="company-employed" name="company-employed" required>
+  
+	<label for="location">Location:</label>
+	<input type="text" id="location" name="location" required>
+  
+	<label for="date-joined">Date Joined:</label>
+	<input type="date" id="date-joined" name="date-joined" required>
+  
+	<label for="date-left">Date Left:</label>
+	<input type="date" id="date-left" name="date-left" required>
+  
+	<button type="submit">Add Experience</button>
+  </form>
+  
+  <ul id="experiences-list">
+	<!-- Existing job experiences will be added here dynamically -->
+  </ul>
+  
+  <script>
+	const experienceForm = document.getElementById('experience-form');
+	const experiencesList = document.getElementById('experiences-list');
+  
+	experienceForm.addEventListener('submit', function(event) {
+	  event.preventDefault(); // prevent the form from submitting
+  
+	  const jobRoleInput = document.getElementById('job-role');
+	  const companyInput = document.getElementById('company-employed');
+	  const locationInput = document.getElementById('location');
+	  const dateJoinedInput = document.getElementById('date-joined');
+	  const dateLeftInput = document.getElementById('date-left');
+  
+	  const experience = {
+		jobRole: jobRoleInput.value,
+		company: companyInput.value,
+		location: locationInput.value,
+		dateJoined: dateJoinedInput.value,
+		dateLeft: dateLeftInput.value
+	  };
+  
+	  // save the experience to local storage
+	  let savedExperiences = JSON.parse(localStorage.getItem('experiences')) || [];
+	  savedExperiences.push(experience);
+	  localStorage.setItem('experiences', JSON.stringify(savedExperiences));
+  
+	  // display the saved experiences in the list
+	  experiencesList.innerHTML = '';
+	  savedExperiences.forEach(function(experience) {
+		const listItem = document.createElement('li');
+		listItem.innerHTML = `
+		  <h3>${experience.jobRole}</h3>
+		  <p>${experience.company}, ${experience.location}</p>
+		  <p>${experience.dateJoined} - ${experience.dateLeft}</p>
+		`;
+		experiencesList.appendChild(listItem);
+	  });
+	});
+  
+	// load saved experiences from local storage on page load
+	const savedExperiences = JSON.parse(localStorage.getItem('experiences')) || [];
+	savedExperiences.forEach(function(experience) {
+	  const listItem = document.createElement('li');
+	  listItem.innerHTML = `
+		<h3>${experience.jobRole}</h3>
+		<p>${experience.company}, ${experience.location}</p>
+		<p>${experience.dateJoined} - ${experience.dateLeft}</p>
+	  `;
+	  experiencesList.appendChild(listItem);
+	});
+  </script>
+  
 
-      </div>
-      
-      <div id="corporations" class="tabcontent" style="display:none">
-        <h3>CORPORATIONS</h3>
-        <!-- Add your corporations content here -->
-      </div>
-      
-      <div class="search-bar">
-        <input type="text" placeholder="Search for jobs...">
-      </div>
-      
-      <div class="job-cards-container">
-        <div class="job-card" onclick="window.location.href='https://forms.gle/oXNWacAMumqZeGFV9">
-          <h2>Front-end Software Engineer</h2>
-          <p><strong>ProgrammerIN * OPEN</strong></p>
-          <button onclick="window.location.href='https://forms.gle/oXNWacAMumqZeGFV9'" class="button">Apply Now</button>
+<div class="skills-header">
+	<h2>Skills:</h2>
+</div>
+  <form id="skills-form">
+	<label for="new-skill">Add Skill:</label>
+	<input type="text" id="new-skill" name="new-skill">
+	<button type="submit">Add</button>
+  </form>
+  <ul id="skills-list"></ul>
+  <script>
+	const skillsForm = document.querySelector('#skills-form');
+	const skillsList = document.querySelector('#skills-list');
+	let skillsArray = JSON.parse(localStorage.getItem('skills')) || [];
+	
+	// Function to render skills
+	function renderSkills() {
+	  skillsList.innerHTML = '';
+	  for (let i = 0; i < skillsArray.length; i++) {
+		const skillItem = document.createElement('li');
+		skillItem.textContent = skillsArray[i];
+		skillsList.appendChild(skillItem);
+	  }
+	}
+	
+	// Function to handle form submission
+	function handleFormSubmit(event) {
+	  event.preventDefault();
+	  const skillInput = document.querySelector('#new-skill');
+	  const skillValue = skillInput.value.trim();
+	  if (skillValue) {
+		skillsArray.push(skillValue);
+		localStorage.setItem('skills', JSON.stringify(skillsArray));
+		skillInput.value = '';
+		renderSkills();
+	  }
+	}
+	
+	// Attach event listeners
+	skillsForm.addEventListener('submit', handleFormSubmit);
+	
+	// Render initial skills
+	renderSkills();
+  </script>
 
-    
-        </div>
+  <div class="edu-header">
+	<h2>Past Education:</h2>
+  </div>
 
-        <div class="job-card" onclick="window.location.href='http://127.0.0.1:5500/.app/job-cards/1/1.html'">
-          <h2>UI/UX Designer and Front-end Software Engineer</h2>
-          <p><strong>ProgrammerIN * OPEN</strong></p>
-          <button onclick="window.location.href='https://forms.gle/oXNWacAMumqZeGFV9'" class="button">Apply Now</button>
-        <div class="job-card">
-          <h2>UI/UX Designer and Front-end Software Engineer</h2>
-          <p><strong>ProgrammerIN * OPEN</strong></p>
-        </div>
-      </div>
 
-      <div class="job-card" onclick="window.location.href='http://127.0.0.1:5500/.app/job-cards/1/1.html'">
-        <h2>UI/UX Designer and Front-end Software Engineer</h2>
-        <p><strong>ProgrammerIN * OPEN</strong></p>
-        <button onclick="window.location.href='https://forms.gle/oXNWacAMumqZeGFV9'" class="button">Apply Now</button>
-      
-      <script>
-      const searchBar = document.querySelector('.search-bar input');
-      const jobCardsContainer = document.querySelector('.job-cards-container');
-      
-      searchBar.addEventListener('input', () => {
-        const searchQuery = searchBar.value.toLowerCase().trim();
-      
-        for (const jobCard of jobCardsContainer.children) {
-          const jobTitle = jobCard.querySelector('h2').textContent.toLowerCase();
-      
-          if (jobTitle.includes(searchQuery)) {
-            jobCard.style.display = 'block';
-          } else {
-            jobCard.style.display = 'none';
-          }
-        }
-      });
-      </script>
-      
-      
+  <div class="h">
+	<p>If you need help: https://github.com/jSagvold28/ProgrammerIN/blob/main/documentation/profile-documentaiton.md</p>
+</div>
 
-    <div class="hello">
-        <h3>Hello, fellow developer.</h3>
-    </div>
+<div class="education">
+	<form id="education-form">
+	  <label for="school">School:</label>
+	  <input type="text" id="school" name="school" required>
+	
+	  <label for="degree">Degree:</label>
+	  <input type="text" id="degree" name="degree" required>
+  
+	  <label for="school-type">School Type:</label>
+	  <input type="text" id="school-type" name="school-type">
+  
+	  <label for="year">Year Graduated:</label>	
+	  <input type="number" id="year" name="year" min="1900" max="2099" required>
+	
+	  <button type="submit">Save</button>
 
-    <div class="recommeneded-jobs">
-        <h3>Recommeneded Jobs For You:</h3>
-    </div>
+	  <h3>Educations</h3>
+	</form>
+  
+	<ul id="saved-education"></ul>
+  
+	<script>
+		const educationForm = document.getElementById('education-form');
+const savedEducationList = document.getElementById('saved-education');
+const educationHeading = document.querySelector('h3');
 
-    <div class="local-jobsheader">
-        <h3>Local Jobs Recommeneded For You:</h3>
-        <p>These are ditermined by your location that you have inputted for your job location. *</p>
-    </div>
+// load saved education from local storage on page load
+const savedEducation = JSON.parse(localStorage.getItem('education')) || [];
+savedEducation.forEach(function(education) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
+  savedEducationList.appendChild(listItem);
+});
 
-    <div class="website-footer">
+// display the education heading if there are saved education items
+if (savedEducation.length > 0) {
+  educationHeading.textContent = `Educations (${savedEducation.length})`;
+} else {
+  educationHeading.style.display = 'none';
+}
 
-      <p>
-        ==================================================================================================================
-      </p>
+educationForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the form from submitting
 
-      <footer>
-        <p>$ npm install web-footer</p>
-        <p>&copy; 2023 ProgrammerIN. All rights reserved.</p>
-        <p> Any code that is used from my open source repository, please credit the code.</p>
-        <p>Privacy policy: <a href="https://github.com/jSagvold28/ProgrammerIN/blob/main/Privacy%20Policy.md">Privacy Policy (in effect 3/19/23 at 12:00am</a></p>
-        <p>Contact me! <a href="https://github.com/jSagvold28/ProgrammerIN/issues"> Contact</a></p>
-        <p>* These are not really fetched from where your work is. These are just hard written.</p>
-      </div>
-    </footer>
+  const schoolInput = document.getElementById('school');
+  const degreeInput = document.getElementById('degree');
+  const schoolTypeInput = document.getElementById('school-type');
+  const yearInput = document.getElementById('year');
 
-    </div>
-      
+  const education = {
+    school: schoolInput.value,
+    degree: degreeInput.value,
+    type: schoolTypeInput.value,
+    year: yearInput.value
+  };
+
+  // save the education to local storage
+  let savedEducation = JSON.parse(localStorage.getItem('education')) || [];
+  savedEducation.push(education);
+  localStorage.setItem('education', JSON.stringify(savedEducation));
+
+  // display the saved education in the list
+  const listItem = document.createElement('li');
+  listItem.textContent = `${education.degree} from ${education.school} (${education.year})`;
+  savedEducationList.appendChild(listItem);
+
+  // display the education heading
+  educationHeading.style.display = 'block';
+  educationHeading.textContent = `Educations (${savedEducation.length})`;
+
+  // clear the form inputs
+  schoolInput.value = '';
+  degreeInput.value = '';
+  schoolTypeInput.value = '';
+  yearInput.value = '';
+});
+
+	  </script>
+	  
+  </div>
+  
+
+  
+
+  <div class="topaccheviements-header">
+	<h2>Top Achevements: </h2>
+  </div>
+
+  <div class="fields">
+	<form id="acc-form">
+		<label for="achevements-name">Achievement Name:</label>
+		<input type="text" id="achievements-name" name="achievements-name" required>
+		<label for="achievement-description">Achievement Description:</label>
+		<input type="text" id="achievement-description" name="achievement-description" required>
+
+		<label for="date-achieved">Date Achieved:</label>
+		<input type="date" id="date-achieved" name="date-achieved">
+
+		<input type="submit" value="Save">
+	</form>
+</div>
+
+<script>
+	// Add an event listener to the form submit button
+	document.querySelector('#acc-form').addEventListener('submit', function(event) {
+		event.preventDefault(); // Prevent the form from submitting
+
+		// Get the form data and save it to local storage
+		var name = document.querySelector('#achievements-name').value;
+		var description = document.querySelector('#achievement-description').value;
+		var date = document.querySelector('#date-achieved').value;
+
+		var achievement = {
+			name: name,
+			description: description,
+			date: date
+		};
+
+		var achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+		achievements.push(achievement);
+		localStorage.setItem('achievements', JSON.stringify(achievements));
+
+		// Reset the form
+		document.querySelector('#acc-form').reset();
+
+		// Reload the page to display the updated achievements list
+		location.reload();
+	});
+
+	// Retrieve the saved achievements from local storage and display them on the page
+	var achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+	var list = document.createElement('ul');
+	for (var i = 0; i < achievements.length; i++) {
+		var item = document.createElement('li');
+		item.textContent = achievements[i].name + ': ' + achievements[i].description + ' (' + achievements[i].date + ')';
+		list.appendChild(item);
+	}
+	document.querySelector('.fields').appendChild(list);
+</script>
+
+  
+<div class="intrests-form">
+	<label for="type">Choose Type of Interest</label>
+	<select name="type" id="type">
+		<option value="select"></option>
+		<option value="person">Person</option>
+		<option value="company">Company</option>
+		<option value="topic">Topic</option>
+	</select>
+	<br><br>
+
+	<label for="interest-name">Interest Name:</label>
+	<input type="text" id="interest-name" name="interest-name" required>
+
+	<label for="interest-description">Description</label>
+	<input type="text" id="interest-description" name="interest-description">
+
+	<button type="button" onclick="saveInterest()">Save Interest</button>
+</div>
+
+<div id="interests-list"></div>
+
+<script>
+	function saveInterest() {
+		// Get the input values
+		const type = document.getElementById('type').value;
+		const name = document.getElementById('interest-name').value;
+		const description = document.getElementById('interest-description').value;
+
+		// Create an object to hold the input values
+		const interest = { type, name, description };
+
+		// Get the existing interests from local storage
+		let interests = JSON.parse(localStorage.getItem('interests')) || [];
+
+		// Add the new interest to the array
+		interests.push(interest);
+
+		// Save the updated interests to local storage
+		localStorage.setItem('interests', JSON.stringify(interests));
+
+		// Clear the form fields
+		document.getElementById('type').value = 'select';
+		document.getElementById('interest-name').value = '';
+		document.getElementById('interest-description').value = '';
+
+		// Display the updated interests
+		displayInterests();
+	}
+
+	function displayInterests() {
+		// Get the interests from local storage
+		let interests = JSON.parse(localStorage.getItem('interests')) || [];
+
+		// Get the interests list element
+		const interestsList = document.getElementById('interests-list');
+
+		// Clear the interests list
+		interestsList.innerHTML = '';
+
+		// Create a new list item for each interest
+		interests.forEach((interest) => {
+			const listItem = document.createElement('li');
+			listItem.innerHTML = `
+				<strong>Intrest Type:</strong> ${interest.type}<br>
+				<strong>Intrest:</strong> ${interest.name}<br>
+				<strong>Description:</strong> ${interest.description}<br><br>
+			`;
+			interestsList.appendChild(listItem);
+		});
+	}
+
+	// Display the initial interests on page load
+	displayInterests();
+</script>
+
+
+<div class="listens-header">
+	<h2>Select:</h2>
+	<h3>Select the item in the selecter below to choose what form you would like to fill out:</h3>
+	<select id="select-field">
+	  <option>Select Type</option>
+	  <option value="listens">Listens</option>
+	  <option value="certificates">Certificates</option>
+	</select>
+  </div>
+<!--   
+  <div class="listens-header">
+	<h2>Licenses & Certificates:</h2>
+	<p>Add your expertise in a Listens or Certificates that you have received or been granted.</p>
+	<select id="select-field">
+	  <option>Select Type</option>
+	  <option value="listens">Listens</option>
+	  <option value="certificates">Certificates</option>
+	</select>
+  </div> -->
+  
+  <div id="listens-section" style="display: none;">
+	<form>
+	  <label for="listens-name">Listens Name:</label>
+	  <input type="text" id="listens-name" name="listens-name" required>
+  
+	  <label for="date-issued">Date Issued:</label>
+	  <input type="date" id="date-issued" name="date-issued" required>
+  
+	  <label for="credential-id">Credential ID: </label>
+	  <input type="text" id="credential-id" name="credential-id" required min="6" max="55">
+  
+	  <button type="submit">Submit</button>
+	</form>
+  </div>
+  
+  <script>
+	// Listen to the submit event of the form in the listens-section
+	document.querySelector("#listens-section form").addEventListener("submit", function(event) {
+	  event.preventDefault(); // prevent the default form submission behavior
+  
+	  // Get the form data
+	  const listensName = document.querySelector("#listens-name").value;
+	  const dateIssued = document.querySelector("#date-issued").value;
+	  const credentialId = document.querySelector("#credential-id").value;
+  
+	  // Create an object to store the form data
+	  const listensData = {
+		"listensName": listensName,
+		"dateIssued": dateIssued,
+		"credentialId": credentialId
+	  };
+  
+	  // Retrieve the existing listens data from local storage or create a new array if it doesn't exist
+	  let listensArray = JSON.parse(localStorage.getItem("listens")) || [];
+  
+	  // Add the new data to the listens array
+	  listensArray.push(listensData);
+  
+	  // Save the updated listens array to local storage
+	  localStorage.setItem("listens", JSON.stringify(listensArray));
+  
+	  // Reset the form
+	  document.querySelector("#listens-section form").reset();
+  
+	  // Display the saved data in a new div
+	  const savedDataDiv = document.createElement("div");
+	  savedDataDiv.innerHTML = `
+		<p>${listensName} - ${dateIssued} - ${credentialId}</p>
+	  `;
+	  document.querySelector("#listens-section").appendChild(savedDataDiv);
+	});
+  </script>
+  
+	</form>
+  </div>
+  
+  <div id="certificates-section" style="display: none;">
+
+	<label for="certificate-name">Certificate Name:</label>
+	<input type="text" id="certificate-name" name="certificate-name" required>
+
+	<label for="date-issued">Date Issued:</label>
+	<input type="date" id="date-issued" name="date-issued" required>
+
+	<label for="date-expires">Date Expires:</label>
+	<input type="date" id="date-expires" name="date-expires" required>
+
+	<button onclick="saveCertificates()">Submit</button>
+
+</div>
+
+<script>
+	// Listen to the change event of the select field
+	document.getElementById("select-field").addEventListener("change", function() {
+	  var selectedOption = this.value;
+	
+	  // Hide all sections first
+	  document.getElementById("listens-section").style.display = "none";
+	  document.getElementById("certificates-section").style.display = "none";
+	
+	  // Show the selected section
+	  if (selectedOption === "listens") {
+		document.getElementById("listens-section").style.display = "block";
+	  } else if (selectedOption === "certificates") {
+		document.getElementById("certificates-section").style.display = "block";
+	  }
+	
+	  // Add submit event listener to the form
+	  var form = document.querySelector("form");
+	  form.addEventListener("submit", function(event) {
+		event.preventDefault();
+	
+		// Get the values from the form inputs
+		var certificateName = document.getElementById("certificate-name").value;
+		var dateIssued = document.getElementById("date-issued").value;
+		var dateExpires = document.getElementById("date-expires").value;
+	
+		// Create an object to hold the certificate data
+		var certificate = {
+		  certificateName: certificateName,
+		  dateIssued: dateIssued,
+		  dateExpires: dateExpires
+		};
+	
+		// Add the certificate data to local storage
+		var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+		certificates.push(certificate);
+		localStorage.setItem("certificates", JSON.stringify(certificates));
+	
+		// Reset the form inputs
+		form.reset();
+	
+		// Show a success message to the user
+		alert("Certificate added successfully!");
+	
+		// Get the certificates from local storage and display them
+		var certificatesList = document.getElementById("certificates-list");
+		certificatesList.innerHTML = "";
+		var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+		certificates.forEach(function(certificate) {
+		  var certificateItem = document.createElement("li");
+		  certificateItem.textContent = certificate.certificateName + " (issued: " + certificate.dateIssued + ", expires: " + certificate.dateExpires + ")";
+		  certificatesList.appendChild(certificateItem);
+		});
+	  });
+	
+	  // Get the certificates from local storage and display them
+	  var certificatesList = document.getElementById("certificates-list");
+	  certificatesList.innerHTML = "";
+	  var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+	  certificates.forEach(function(certificate) {
+		var certificateItem = document.createElement("li");
+		certificateItem.textContent = certificate.certificateName + " (issued: " + certificate.dateIssued + ", expires: " + certificate.dateExpires + ")";
+		certificatesList.appendChild(certificateItem);
+	  });
+	});
+	
+	// Get the certificates from local storage and display them on page load
+	window.addEventListener('load', function () {
+	  var certificatesList = document.getElementById("certificates-list");
+	  certificatesList.innerHTML = "";
+	  var certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+	  certificates.forEach(function(certificate) {
+		var certificateItem = document.createElement("li");
+		certificateItem.textContent = certificate.certificateName + " (issued: " + certificate.dateIssued + ", expires: " + certificate.dateExpires + ")";
+		certificatesList.appendChild(certificateItem);
+	  });
+	});
+	
+	</script>
+
+	<div class="paytransparency-header">
+		<h2>Pay Transparancy</h2>
+		<p>Salaries that you have been paid in the past, that you are open to share. (scroll to right)</p>
+	</div>
+
+	<div class="pay-forms">
+		<form class="job-form">
+		  <label for="job-title">Job Title:</label>
+		  <input type="text" id="job-title" name="job-title" required>
+	  
+		  <label for="company">Company:</label>
+		  <input type="text" id="company" name="company" required>
+	  
+		  <label for="location">Location:</label>
+		  <input type="text" id="location" name="location" required>
+	  
+		  <label for="salary">Salary:</label>
+		  <input type="number" id="salary" name="salary" required>
+	  
+		  <label for="yoe">Years of Experience:</label>
+		  <input type="number" id="yoe" name="yoe" required>
+	  
+		  <label for="employment-type">Employment Type:</label>
+		  <select id="employment-type" name="employment-type">
+			<option value="">Select</option>
+			<option value="full-time">Full-time</option>
+			<option value="part-time">Part-time</option>
+			<option value="contract">Contract</option>
+		  </select>
+	  
+		  <label for="education">Education:</label>
+		  <select id="education" name="education">
+			<option value=""> </option>
+			<option value="high-school-diploma">High School Diploma</option>
+			<option value="associate-degree">Associate's Degree</option>
+			<option value="bachelor-degree">Bachelor's Degree</option>
+			<option value="master-degree">Master's Degree</option>
+			<option value="doctorate-degree">Doctorate Degree</option>
+			<option value="ged">GED</option>
+			<option value="other">Other, not listed</option>
+		  </select>
+	  
+		  <button type="submit">Submit</button>
+		</form>
+		<script>
+			// Get the form element
+const form = document.querySelector('.job-form');
+
+// Add an event listener to the form on submission
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent form submission
+  
+  // Get the form values
+  const jobTitle = document.getElementById('job-title').value;
+  const company = document.getElementById('company').value;
+  const location = document.getElementById('location').value;
+  const salary = document.getElementById('salary').value;
+  const yoe = document.getElementById('yoe').value;
+  const employmentType = document.getElementById('employment-type').value;
+  const education = document.getElementById('education').value;
+  
+  // Save the form data to local storage
+  localStorage.setItem('jobTitle', jobTitle);
+  localStorage.setItem('company', company);
+  localStorage.setItem('location', location);
+  localStorage.setItem('salary', salary);
+  localStorage.setItem('yoe', yoe);
+  localStorage.setItem('employmentType', employmentType);
+  localStorage.setItem('education', education);
+  
+  // Display the saved data in an h2 element
+  const hello = document.getElementById('hello');
+  hello.innerHTML = `Job Salary Transparency:<br>
+    Job Title: ${jobTitle}<br>
+    Company: ${company}<br>
+    Location: ${location}<br>
+    Salary: ${salary}<br>
+    Years of Experience: ${yoe}<br>
+    Employment Type: ${employmentType}<br>
+    Education: ${education}`;
+});
+
+// Check if there is any saved data in local storage on page load
+window.addEventListener('load', function() {
+  const jobTitle = localStorage.getItem('jobTitle');
+  const company = localStorage.getItem('company');
+  const location = localStorage.getItem('location');
+  const salary = localStorage.getItem('salary');
+  const yoe = localStorage.getItem('yoe');
+  const employmentType = localStorage.getItem('employmentType');
+  const education = localStorage.getItem('education');
+  
+  // If there is saved data, display it in the h2 element
+  if (jobTitle && company && location && salary && yoe && employmentType && education) {
+    const hello = document.getElementById('hello');
+    hello.innerHTML = `Job Salary Transparency:<br>
+      Job Title: ${jobTitle}<br>
+      Company: ${company}<br>
+      Location: ${location}<br>
+      Salary: ${salary}<br>
+      Years of Experience: ${yoe}<br>
+      Employment Type: ${employmentType}<br>
+      Education: ${education}`;
+  }
+});
+
+		</script>
+	<p id="hello">Job Salary Transparency</p>
+
+	  </div>
+
+	  <div class="personal-dictionaries-header">
+		<h2>Personal Dictonary</h2>
+		<p>Personal Dictionaries are for if you use any slang for your coding terms, real life chat, emails, ect.</p>
+		</div>
+
+		<div class="personal-personal-dictionaries-forms">
+  <form id="dictionary-form">
+    <label for="word">Word:</label>
+    <input type="text" id="word" name="word" required minlength="1" maxlength="35">
+
+    <label for="meaning">Meaning:</label>
+    <input type="text" id="meaning" name="meaning" required minlength="10" maxlength="75">
+
+    <label for="used-often">Do you use it often</label>
+    <select id="used-often" name="used-often">
+		<option value=""> </option>
+		<option value="yes">Yes</option>
+		<option value="no">No</option>
+    </select>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <h3>Personal Dictionary Index:</h3>
+  <ul id="dictionary-list"></ul>
+</div>
+
+<script>
+  const dictionaryForm = document.getElementById('dictionary-form');
+  const dictionaryList = document.getElementById('dictionary-list');
+
+  dictionaryForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent the form from submitting
+
+    const wordInput = document.getElementById('word');
+    const meaningInput = document.getElementById('meaning');
+    const usedOftenInput = document.getElementById('used-often');
+
+    const dictionary = {
+      word: wordInput.value,
+      meaning: meaningInput.value,
+      usedOften: usedOftenInput.value
+    };
+
+    // save the dictionary entry to local storage
+    let savedDictionary = JSON.parse(localStorage.getItem('dictionary')) || [];
+    savedDictionary.push(dictionary);
+    localStorage.setItem('dictionary', JSON.stringify(savedDictionary));
+
+    // display the saved dictionary entries in the list
+    dictionaryList.innerHTML = '';
+    savedDictionary.forEach(function(dictionary) {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${dictionary.word}: ${dictionary.meaning} (Used often: ${dictionary.usedOften})`;
+      dictionaryList.appendChild(listItem);
+    });
+  });
+
+  // load saved dictionary entries from local storage on page load
+  const savedDictionary = JSON.parse(localStorage.getItem('dictionary')) || [];
+  savedDictionary.forEach(function(dictionary) {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${dictionary.word}: ${dictionary.meaning} (Used often: ${dictionary.usedOften})`;
+    dictionaryList.appendChild(listItem);
+  });
+</script>
+
+
+	  <div class="job-rating-header">
+		<h3>Job Ratings:</h3>
+	  </div>
+	  
+<div class="job-field">
+  <p>Job Title:</p>
+  <input type="text" id="job-title" name="job-title" required>
+
+  <p>Company:</p>
+  <input type="text" id="emp-company" name="emp-company" required>
+
+  <p>Job Rating:</p>
+  <select id="job-rating" required>
+    <option>Select Rating</option>
+    <option>1 Star</option>
+    <option>2 Stars</option>
+    <option>3 Stars</option>
+    <option>4 Stars</option>
+    <option>5 Stars</option>
+  </select>
+
+  <p>Level:</p>
+  <select id="level" required>
+    <option>Select</option>
+    <option>Intern</option>
+    <option>Junior Software Engineer</option>
+    <option>Software Engineer</option>
+    <option>Senior Software Engineer</option>
+    <option>Staff Software Engineer</option>
+    <option>Principal Software Engineer</option>
+  </select>
+
+  <p>Compensation:</p>
+  <input type="number" id="cmp" name="cmp">
+
+  <button id="submit-btn">Submit</button>
+</div>
+
+<script>
+  // Get the submit button
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Add an event listener to the submit button
+  submitBtn.addEventListener('click', function(event) {
+    // Get the values entered by the user
+    const jobTitle = document.getElementById('job-title').value;
+    const company = document.getElementById('emp-company').value;
+    const jobRating = document.getElementById('job-rating').value;
+    const level = document.getElementById('level').value;
+    const compensation = document.getElementById('compensation-ct').value;
+
+    // Save the values in local storage
+    localStorage.setItem('jobTitle', jobTitle);
+    localStorage.setItem('company', company);
+    localStorage.setItem('jobRating', jobRating);
+    localStorage.setItem('level', level);
+    localStorage.setItem('compensation', compensation);
+  });
+
+  // Load the values from local storage when the page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const jobTitle = localStorage.getItem('jobTitle');
+    const company = localStorage.getItem('company');
+    const jobRating = localStorage.getItem('jobRating');
+    const level = localStorage.getItem('level');
+    const compensation = localStorage.getItem('compensation');
+
+    if (jobTitle) {
+      document.getElementById('job-title').value = jobTitle;
+    }
+
+    if (company) {
+      document.getElementById('emp-company').value = company;
+    }
+
+    if (jobRating) {
+      document.getElementById('job-rating').value = jobRating;
+    }
+
+    if (level) {
+      document.getElementById('level').value = level;
+    }
+
+    if (compensation) {
+      document.getElementById('compensation-ct').value = compensation;
+    }
+  });
+
+  </script>
+	  
+  
+
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
+</html>
+
+</body>
 </html>
