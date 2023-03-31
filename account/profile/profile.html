@@ -8,7 +8,6 @@
 	<title>ProgrammerIN - Profile</title>
 
 	
-	
 	<style>
 		/* CSS For table of data */
 		body {
@@ -62,9 +61,38 @@
 		<a class="Account" href="http://127.0.0.1:5500/account/login/login.html">Log out</a>
 	  </div>
 
+	  <h1>Navigation Button Presser</h1>
+    
+	  <!-- Define the navigation buttons -->
+	  <div class="buttons">
+		  <button class="nav-button" onclick="pressButton(1)"><u><bold>Home</bold></u></button>
+		  <button class="nav-button" onclick="pressButton(2)">Hire Me!</button>
+	  </div>
+	  
+	  <script>
+		function pressButton(buttonNumber) {
+		  // Send a request to navigate to the appropriate URL
+		  switch (buttonNumber) {
+			case 1:
+			  window.location.href = "http://127.0.0.1:5500/account/profile/profile.html";
+			  break;
+			case 2:
+			  window.location.href = "http://127.0.0.1:5500/account/profile/job-information/job-informaiton.html";
+			  break;
+		  }
+		  
+		  // Update the active button style
+		  var buttons = document.getElementsByClassName("nav-button");
+		  for (var i = 0; i < buttons.length; i++) {
+			buttons[i].classList.remove("active");
+		  }
+		  buttons[buttonNumber - 1].classList.add("active");
+		}
+	  </script>
 
-	<div class="container">
-		<h1>Profile View: <span id="username"></span></h1>
+
+	<!-- <div class="container">
+		<h1>Profile View: <span id="username"></span></h1> -->
 <script>
 	// Retrieve the name from local storage
 	const name = localStorage.getItem('name');
@@ -85,6 +113,7 @@
 
 		</script>
 	</div>
+
 
 	<div class="profile-icon">
 		<select id="profile-select">
@@ -185,9 +214,6 @@
 	  };
 	</script>
 	
-
-
-
 		<div class="basic-info">
 			<h3><strong>Basic Information:</strong></h3>
 			<p>Name: <span id="name"></span></p>
