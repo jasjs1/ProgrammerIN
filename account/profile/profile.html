@@ -712,7 +712,7 @@ educationForm.addEventListener('submit', function(event) {
 
 <div class="intrests-header">
 	<h2>Intrests</h2>
-	<p>Can be about anything</p>
+	<p>Let other users know about your intrests.</p>
 </div>
   
 <div class="intrests-form">
@@ -722,6 +722,7 @@ educationForm.addEventListener('submit', function(event) {
 		<option value="person">Person</option>
 		<option value="company">Company</option>
 		<option value="topic">Topic</option>
+		<option value="hobby">Hobby</option>
 	</select>
 	<br><br>
 
@@ -730,6 +731,16 @@ educationForm.addEventListener('submit', function(event) {
 
 	<label for="interest-description">Description</label>
 	<input type="text" id="interest-description" name="interest-description">
+	
+	<div id="hobby-fields" style="display: none;">
+		<label for="hobby-proficiency">Proficiency Level:</label>
+		<select name="hobby-proficiency" id="hobby-proficiency">
+			<option value="beginner">Beginner</option>
+			<option value="intermediate">Intermediate</option>
+			<option value="advanced">Advanced</option>
+		</select>
+		<br><br>
+	</div>
 
 	<button type="button" onclick="saveInterest()">Add Interest</button>
 </div>
@@ -737,57 +748,77 @@ educationForm.addEventListener('submit', function(event) {
 <div id="interests-list"></div>
 
 <script>
-	function saveInterest() {
-		// Get the input values
-		const type = document.getElementById('type').value;
-		const name = document.getElementById('interest-name').value;
-		const description = document.getElementById('interest-description').value;
+// Get the form and the interests list elements
+const interestsForm = document.getElementById('interests-form');
+const interestsList = document.getElementById('interests-list');
 
-		// Create an object to hold the input values
-		const interest = { type, name, description };
+// Add an event listener to the form for form submissions
+interestsForm.addEventListener('submit', (event) => {
+  // Prevent the default form submission behavior
+  event.preventDefault();
 
-		// Get the existing interests from local storage
-		let interests = JSON.parse(localStorage.getItem('interests')) || [];
+  // Get the input values
+  const type = document.getElementById('type').value;
+  const name = document.getElementById('interest-name').value;
+  const description = document.getElementById('interest-description').value;
+  const isHobby = document.getElementById('hobby-toggle').checked;
 
-		// Add the new interest to the array
-		interests.push(interest);
+  // Create an object to hold the input values
+  const interest = { type, name, description, isHobby };
 
-		// Save the updated interests to local storage
-		localStorage.setItem('interests', JSON.stringify(interests));
+  // Get the existing interests from local storage
+  let interests = JSON.parse(localStorage.getItem('interests')) || [];
 
-		// Clear the form fields
-		document.getElementById('type').value = 'select';
-		document.getElementById('interest-name').value = '';
-		document.getElementById('interest-description').value = '';
+  // Add the new interest to the array
+  interests.push(interest);
 
-		// Display the updated interests
-		displayInterests();
-	}
+  // Save the updated interests to local storage
+  localStorage.setItem('interests', JSON.stringify(interests));
 
-	function displayInterests() {
-		// Get the interests from local storage
-		let interests = JSON.parse(localStorage.getItem('interests')) || [];
+  // Clear the form fields
+  document.getElementById('type').value = 'select';
+  document.getElementById('interest-name').value = '';
+  document.getElementById('interest-description').value = '';
 
-		// Get the interests list element
-		const interestsList = document.getElementById('interests-list');
+  // Display the updated interests
+  displayInterests();
+});
 
-		// Clear the interests list
-		interestsList.innerHTML = '';
+// Add an event listener to the hobby toggle for toggling hobbies on and off
+const hobbyToggle = document.getElementById('hobby-toggle');
+hobbyToggle.addEventListener('change', (event) => {
+  displayInterests();
+});
 
-		// Create a new list item for each interest
-		interests.forEach((interest) => {
-			const listItem = document.createElement('li');
-			listItem.innerHTML = `
-				<strong>Intrest Type:</strong> ${interest.type}<br>
-				<strong>Intrest:</strong> ${interest.name}<br>
-				<strong>Description:</strong> ${interest.description}<br><br>
-			`;
-			interestsList.appendChild(listItem);
-		});
-	}
+function displayInterests() {
+  // Get the interests from local storage
+  let interests = JSON.parse(localStorage.getItem('interests')) || [];
 
-	// Display the initial interests on page load
-	displayInterests();
+  // If the hobby toggle is on, filter the interests to only show hobbies
+  if (hobbyToggle.checked) {
+    interests = interests.filter((interest) => interest.isHobby);
+  }
+
+  // Clear the interests list
+  interestsList.innerHTML = '';
+
+  // Create a new list item for each interest
+  interests.forEach((interest) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <strong>Interest Type:</strong> ${interest.type}<br>
+      <strong>Interest:</strong> ${interest.name}<br>
+      <strong>Description:</strong> ${interest.description}<br>
+      ${interest.isHobby ? '<strong>Hobby</strong><br>' : ''}
+      <br>
+    `;
+    interestsList.appendChild(listItem);
+  });
+}
+
+// Display the initial interests on page load
+displayInterests();
+
 </script>
 
 
@@ -800,16 +831,6 @@ educationForm.addEventListener('submit', function(event) {
 	  <option value="certificates">Certificates</option>
 	</select>
   </div>
-<!--   
-  <div class="listens-header">
-	<h2>Licenses & Certificates:</h2>
-	<p>Add your expertise in a Listens or Certificates that you have received or been granted.</p>
-	<select id="select-field">
-	  <option>Select Type</option>
-	  <option value="listens">Listens</option>
-	  <option value="certificates">Certificates</option>
-	</select>
-  </div> -->
   
   <div id="listens-section" style="display: none;">
 	<form>
@@ -866,6 +887,7 @@ educationForm.addEventListener('submit', function(event) {
   
 	</form>
   </div>
+
   
   <div id="certificates-section" style="display: none;">
 
@@ -1079,7 +1101,7 @@ window.addEventListener('load', function() {
 		</div>
 
 		<div class="personal-personal-dictionaries-forms">
-  <form id="dictionary-form">
+  <!-- <form id="dictionary-form"> -->
     <label for="word">Word:</label>
     <input type="text" id="word" name="word" required minlength="1" maxlength="35">
 
@@ -1141,7 +1163,7 @@ window.addEventListener('load', function() {
 </script>
 
 
-	  <div class="job-rating-header">
+	  <!-- <div class="job-rating-header">
 		<h3>Job Ratings:</h3>
 	  </div>
 	  
@@ -1229,7 +1251,7 @@ window.addEventListener('load', function() {
     }
   });
 
-  </script>
+  </script> -->
 	  
   
 
