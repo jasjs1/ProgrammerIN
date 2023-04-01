@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ProgrammerIN - HireMe!</title>
+</head>
+<body>
+
+    <div class="buttons">
+        <button class="nav-button" onclick="pressButton(1)"><u><bold>Home</bold></u></button>
+        <button class="nav-button" onclick="pressButton(2)">HireMe!</button>
+    </div>
+    
+    <script>
+      function pressButton(buttonNumber) {
+        // Send a request to navigate to the appropriate URL
+        switch (buttonNumber) {
+          case 1:
+            window.location.href = "http://127.0.0.1:5500/account/profile/profile.html";
+            break;
+          case 2:
+            window.location.href = "http://127.0.0.1:5500/account/profile/job-information/job-informaiton.html";
+            break;
+        }
+        
+        // Update the active button style
+        var buttons = document.getElementsByClassName("nav-button");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].classList.remove("active");
+        }
+        buttons[buttonNumber - 1].classList.add("active");
+      }
+    </script>
+
+
+    <div class="header">
+        <h2>ProgrammerIN | HireMe!</h2>
+        <p>This seciton is for you to upload information that you want jobs to see to hopefully hire you!</p>
+    </div>
+
+
+    		  
+    <div class="basic-info">
+        <h3><strong>Job Information:</strong></h3>
+        <p>Name: <span id="name"></span></p>
+        <p>Email: <span id="email"></span></p>
+        <p>Looking For Jobs: <span id="hiringStatus"></span></p>
+        <p>Username: <span id="username">@username</span></p>
+      </div>
+
+
+</div>
+
+<script>
+    const tokens = ['name', 'email', 'username', 'location', 'currentRole', 'roleAt', 'hiringStatus', 'workLocation'];
+    const values = {};
+    
+    // Check if tokens are in local storage
+    for (let token of tokens) {
+        if (localStorage.getItem(token)) {
+            values[token] = localStorage.getItem(token);
+        } else {
+            values[token] = prompt(`Please enter your ${token}:`);
+            localStorage.setItem(token, values[token]);
+        }
+        document.getElementById(token).textContent = values[token];
+    }
+</script>
+
+
+    <div class="cv-header">
+        <h2>CV Uploader</h2>
+        <p>CV is a type of resume. That lets you show off your work experience and skills</p>
+        <p>PDFs, doc, or docx are allowed.</p>
+    </div>
+
+    <div class="uploader">
+        <input type="file" accept=".pdf,.doc,.docx" onchange="openFile(this.files[0])">
+    
+        <script>
+function openFile(file) {
+  // Check if the selected file is a PDF, DOC, or DOCX file
+  var allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+  if (allowedTypes.indexOf(file.type) === -1) {
+    alert("Invalid file type. Please select a PDF, DOC, or DOCX file.");
+    return;
+  }
+  
+  // Create a new tab with the selected file
+  var url = URL.createObjectURL(file);
+  var link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.download = file.name; // set the file name for downloading
+  link.textContent = file.name; // set the file name as the link text
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // Convert file to Base64 and save to localStorage
+  var reader = new FileReader();
+  reader.onload = function() {
+    var base64 = reader.result.split(',')[1];
+    localStorage.setItem('cv', base64);
+  }
+  reader.readAsDataURL(file);
+}
+
+
+        </script>
+    </div>
+
+    <ul id="experiences-list">
+      <!-- Existing job experiences will be added here dynamically -->
+      <script>
+        const experiencesList = document.getElementById('experiences-list');
+
+// Load saved experiences from local storage on page load
+const savedExperiences = JSON.parse(localStorage.getItem('experiences')) || [];
+
+// Display the saved experiences in the list
+savedExperiences.forEach(function(experience) {
+  const listItem = document.createElement('li');
+  listItem.innerHTML = `
+    <h3>${experience.jobRole}</h3>
+    <p>${experience.company}, ${experience.location}</p>
+    <p>${experience.dateJoined} - ${experience.dateLeft}</p>
+  `;
+  experiencesList.appendChild(listItem);
+});
+
+      </script>
+    </ul>
+    
+
+    
+</body>
+</html>
