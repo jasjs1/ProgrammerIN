@@ -1,0 +1,26 @@
+body {
+    background-color: #1c1f23;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+
+.buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.header {
+    color: #6466E9;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cv-header {
+    color: #6466E9;
+}
+
+.uploader {
+    text-align: center;
+}
