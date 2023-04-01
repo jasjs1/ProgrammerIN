@@ -659,6 +659,16 @@ educationForm.addEventListener('submit', function(event) {
 		<input type="date" id="date-achieved" name="date-achieved">
 
 		<input type="submit" value="Save">
+		<style>
+			input[type="submit"] {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: auto;
+  margin: 0;
+  cursor: pointer;
+}
+		</style>
 	</form>
 </div>
 
@@ -700,6 +710,10 @@ educationForm.addEventListener('submit', function(event) {
 	document.querySelector('.fields').appendChild(list);
 </script>
 
+<div class="intrests-header">
+	<h2>Intrests</h2>
+	<p>Can be about anything</p>
+</div>
   
 <div class="intrests-form">
 	<label for="type">Choose Type of Interest</label>
