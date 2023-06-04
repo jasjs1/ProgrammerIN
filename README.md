@@ -27,4 +27,4 @@ ProgrammerIN offers the following features:
 ## For Support:
 Methods of contact:
 GitHub Issues (preferd): https://github.com/jSagvold28/ProgrammerIN/issues
-Email (dont read typically): j.sagvold.00@gmail.com
+Email (dont read typically): contactjaycesagvold@duck.com
